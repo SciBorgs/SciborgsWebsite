@@ -1,0 +1,93 @@
+.container {
+  position: relative;
+  justify-self: center;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+
+  --default-rotate: 11deg;
+}
+
+.container .image {
+  --rotateX: 5deg;
+  --rotateY: 0deg;
+
+  transition: transform 500ms ease;
+  transform: perspective(31.25rem) rotateY(var(--rotateY))
+    rotateX(var(--rotateX));
+}
+
+.container .pos {
+  position: absolute;
+  z-index: 1;
+  display: inline-block;
+  width: calc(100% / 3);
+  height: calc(100% / 2);
+}
+
+.container .pos:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+
+.container .pos:nth-child(1):hover ~ .image {
+  --rotateX: var(--default-rotate);
+  --rotateY: calc(var(--default-rotate) * -1);
+}
+
+.container .pos:nth-child(2) {
+  top: 0;
+  left: calc(100% / 3);
+}
+
+.container .pos:nth-child(2):hover ~ .image {
+  --rotateX: var(--default-rotate);
+  --rotateY: 0deg;
+}
+
+.container .pos:nth-child(3) {
+  top: 0;
+  right: 0;
+}
+
+.container .pos:nth-child(3):hover ~ .image {
+  --rotateX: var(--default-rotate);
+  --rotateY: var(--default-rotate);
+}
+
+.container .pos:nth-child(4) {
+  bottom: 0;
+  left: 0;
+}
+
+.container .pos:nth-child(4):hover ~ .image {
+  --rotateX: calc(var(--default-rotate) * -1);
+  --rotateY: calc(var(--default-rotate) * -1);
+}
+
+.container .pos:nth-child(5) {
+  bottom: 0;
+  left: calc(100% / 3);
+}
+
+.container .pos:nth-child(5):hover ~ .image {
+  --rotateX: calc(var(--default-rotate) * -1);
+  --rotateY: 0deg;
+}
+
+.container .pos:nth-child(6) {
+  bottom: 0;
+  right: 0;
+}
+
+.container .pos:nth-child(6):hover ~ .image {
+  --rotateX: calc(var(--default-rotate) * -1);
+  --rotateY: var(--default-rotate);
+}
+
+@media (min-width: 48rem) {
+  .container {
+    width: 12rem;
+    height: 12rem;
+  }
+}

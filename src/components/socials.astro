@@ -1,0 +1,59 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div id="container">
+  <a id="link" href="https://www.youtube.com/user/sciborgs">
+    <Icon id="icon" name="mdi:youtube" />
+  </a>
+  <a id="link"  href="https://www.instagram.com/sciborgs/">
+    <Icon id="icon" name="mdi:instagram" />
+  </a>
+  <a id="link" href="https://github.com/sciborgs">
+    <Icon id="icon" name="mdi:github" />
+  </a>
+  <a id="link" href="https://www.thebluealliance.com/team/1155">
+    <Icon id="icon" name="tba" />
+  </a>
+</div>
+
+<style>
+  #container {
+    display: grid;
+    justify-content: center;
+    gap: 0.325rem;
+    padding: 0.5rem;
+    grid-template-columns: repeat(4, 0fr);
+
+    @media (width >= 48rem) {
+      justify-content: left;
+    }
+  }
+
+  #link {
+    width: 2rem;
+    height: 2rem;
+    transition: transform 300ms ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+    @media (width >= 48rem) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  #icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--white-but-not);
+    filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 5%));
+
+    @media (width >= 48rem) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+</style>

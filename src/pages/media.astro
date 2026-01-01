@@ -1,0 +1,108 @@
+---
+import { YouTube } from "astro-embed";
+import { getLatestYoutubeVideo } from "../lib/youtube";
+
+const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
+---
+
+<body>
+  <div class="container">
+    <div class="inner">
+      <div class="header">
+        <h1>Media</h1>
+        <p>Latest Content From Our Socials</p>
+      </div>
+
+      <div class="socials">
+        <div class="socialContainer">
+          <h2>YouTube</h2>
+          {
+            video ? (
+              <YouTube class="youtube" id={video.videoId} title={video.title} />
+            ) : (
+              <p>No video available</p>
+            )
+          }
+        </div>
+
+        <div class="socialContainer" style="max-width: 24rem;">
+          <h2>Instagram</h2>
+          <blockquote
+            id="instagram"
+            class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DFi2rKrJVMp/"
+            data-instgrm-version="14"
+            style="min-width: 0 !important;"
+          >
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <script async src="https://www.instagram.com/embed.js"></script>
+  </div>
+</body>
+
+<style lang="scss">
+  .container {
+    width: 100%;
+  }
+
+  .inner {
+    background: var(--background);
+    padding: 1.5rem;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 1rem;
+
+    h1 {
+      font-size: var(--text-4xl);
+    }
+
+    p {
+      opacity: 0.75;
+      font-size: var(--text-md);
+    }
+  }
+
+  .socials {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-content: center;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .socialContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+    overflow: hidden;
+    gap: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--white-but-not);
+    background: var(--background);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    max-width: 720px;
+
+    h2 {
+      margin-block: 0;
+    }
+  }
+
+  .youtube {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.75rem;
+  }
+
+  @media (min-width: 48rem) {
+    .socials {
+      display: flex;
+      justify-content: center;
+    }
+  }
+</style>
