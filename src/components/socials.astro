@@ -6,14 +6,17 @@ import { Icon } from "astro-icon/components";
   <a id="link" href="https://www.youtube.com/user/sciborgs">
     <Icon id="icon" name="mdi:youtube" />
   </a>
-  <a id="link"  href="https://www.instagram.com/sciborgs/">
-    <Icon id="icon" name="mdi:instagram" />
+  <a id="link" href="https://www.instagram.com/sciborgs/">
+    <Icon id="icon" color="orange" name="mdi:instagram" />
   </a>
   <a id="link" href="https://github.com/sciborgs">
     <Icon id="icon" name="mdi:github" />
   </a>
   <a id="link" href="https://www.thebluealliance.com/team/1155">
     <Icon id="icon" name="tba" />
+  </a>
+  <a id="link">
+    <Icon id="icon" name="chiefdelphi" />
   </a>
 </div>
 
@@ -23,11 +26,7 @@ import { Icon } from "astro-icon/components";
     justify-content: center;
     gap: 0.325rem;
     padding: 0.5rem;
-    grid-template-columns: repeat(4, 0fr);
-
-    @media (width >= 48rem) {
-      justify-content: left;
-    }
+    grid-template-columns: repeat(5, 0fr);
   }
 
   #link {
@@ -38,11 +37,6 @@ import { Icon } from "astro-icon/components";
     &:hover {
       transform: scale(1.2);
     }
-
-    @media (width >= 48rem) {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
   }
 
   #icon {
@@ -50,8 +44,19 @@ import { Icon } from "astro-icon/components";
     height: 2rem;
     color: var(--white-but-not);
     filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 5%));
+  }
 
-    @media (width >= 48rem) {
+  @media (width >= 48rem) {
+    #container {
+      justify-content: left;
+    }
+
+    #link {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    #icon {
       width: 2.5rem;
       height: 2.5rem;
     }

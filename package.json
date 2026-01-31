@@ -6,20 +6,30 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "style": "npx stylelint \"**/*.{astro,scss,css}\" --fix",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
     "@iconify-json/mdi": "^1.2.3",
-    "@types/react": "^19.2.7",
+    "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.16.6",
+    "astro": "^5.17.1",
     "astro-embed": "^0.9.2",
     "astro-icon": "^1.1.5",
-    "fast-xml-parser": "^5.3.3",
+    "fast-xml-parser": "^5.3.4",
     "nanostores": "^1.1.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "sass": "^1.97.1"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sass": "^1.97.3"
+  },
+  "devDependencies": {
+    "postcss-html": "^1.8.1",
+    "postcss-scss": "^4.0.9",
+    "stylelint": "^17.0.0",
+    "stylelint-config-astro": "^2.0.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^7.0.1"
   }
 }

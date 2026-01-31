@@ -1,10 +1,10 @@
+import type { HTMLAttributes } from "react";
 import styles from "../styles/_moveImage.module.scss";
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLImageElement> {
   src: string;
 }
-
-export default function MoveImage({ src }: Props) {
+export default function MoveImage({ src, ...rest }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.pos} />

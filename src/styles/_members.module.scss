@@ -1,22 +1,15 @@
 img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 6rem;
+  height: 6rem;
+  filter: drop-shadow(3px 3px 5px #000);
   object-fit: cover;
+  pointer-events: auto;
 }
 
 .container {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-
-.innerContainer {
-  position: absolute;
-  inset: 2rem;
-  border-radius: 1rem;
-  border: 1px solid var(--white-but-not);
-  background: var(--background);
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -29,10 +22,10 @@ img {
 
 .selectorContainer {
   position: relative;
-  display: inline-flex;
-  flex-direction: row;
+  display: flex;
   gap: 1rem;
-  width: auto;
+  width: fit-content;
+  margin: 0 auto;
   padding: 0.75rem;
   border: 1px solid var(--white-but-not);
   border-radius: 5rem;
@@ -59,101 +52,106 @@ img {
   background-color: var(--color-yellow);
   border-radius: 5rem;
   opacity: 0.5;
-  transform: translateX(calc(6.5rem * var(--offset)));
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 350ms;
   cursor: pointer;
+  transform: translateX(calc(6.5rem * var(--offset)));
 }
 
 .membersContainer {
-  position: relative;
-  width: 100vw;
-  height: 32rem;
-}
-
-.membersBackground {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.memberContainer {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  width: 100%;
+  height: 14rem;
   perspective: 31.25rem;
-  transform-style: preserve-3d;
   pointer-events: none;
-  z-index: 1;
+  transform-style: preserve-3d;
 }
 
 #imageContainer {
-  --offsetX: calc(var(--offset) * 5rem);
+  --offsetX: calc(var(--offset) * 2.5rem);
   --rotateY: 25deg;
+  --translateZ: 5rem;
   --opacity: 0.65;
-  position: absolute;
-  top: 4rem;
-  width: 8rem;
-  aspect-ratio: 1 / 1;
-  transition: top 400ms ease, 400ms ease, scale 750ms ease, opacity 350ms ease;
-  filter: drop-shadow(3px 3px 5px #333);
-  pointer-events: auto;
-  z-index: calc(100 - abs(var(--offset)));
+
+  display: inline-flex;
+  place-self: center center;
+  transition:
+    transform 400ms ease,
+    opacity 350ms ease;
+  grid-area: 1 / 1;
+  place-items: center;
+  pointer-events: none;
 
   &.default {
+    z-index: calc(100 - var(--offset));
     opacity: var(--opacity);
     cursor: pointer;
-    transform: translateX(calc(var(--offsetX) + 1rem))
-      rotateY(calc(var(--rotateY) * -0.5));
+    transform: translateX(var(--offsetX)) rotateY(calc(var(--rotateY) * -0.5))
+      translateZ(calc(var(--translateZ) * -1));
   }
 
   &.activeImage {
     z-index: 100;
     opacity: 1;
-    scale: 1.3;
+    transform: scale(1.3);
   }
 
   &.rightImage {
-    transform-origin: left center;
-    opacity: calc(1 - calc(abs(var(--offset)) * 0.1));
+    z-index: calc(100 - var(--offset));
+    opacity: calc(1 - calc(var(--offset) * 0.1));
     cursor: pointer;
-    transform: translateX(var(--offsetX)) rotateY(calc(var(--rotateY) * -1));
+    transform: translateX(var(--offsetX)) rotateY(calc(var(--rotateY) * -1))
+      translateZ(calc(var(--translateZ) * -1));
   }
 
   &.leftImage {
-    transform-origin: right center;
-    opacity: calc(1 - calc(abs(var(--offset)) * 0.1));
+    z-index: calc(100 + var(--offset));
+    opacity: calc(1 + calc(var(--offset) * 0.1));
     cursor: pointer;
-    transform: translateX(var(--offsetX)) rotateY(calc(var(--rotateY) * 1));
+    transform: translateX(var(--offsetX)) rotateY(calc(var(--rotateY) * 1))
+      translateZ(calc(var(--translateZ) * -1));
   }
 }
 
-.hoverContainer {
-  position: relative;
+.gridContainer {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  place-items: center;
 }
 
-#textContainer {
+.textContainer {
   display: flex;
   flex-direction: column;
-  width: 12rem;
+  align-items: flex-start;
+  max-width: 14rem;
+  height: 0%;
   margin-top: 0.5rem;
   padding: 0.25rem 0.375rem;
+  text-align: center;
+  background-color: var(--color-bg);
   border: 1px solid var(--white-but-not);
-  animation: appear ease-in-out 1000ms forwards 100ms;
   border-radius: 0.25rem;
   box-shadow: 2px 2px 10px #000;
-  justify-self: center;
-  opacity: 0;
+  opacity: 0 !important;
+  transition:
+    height 200ms ease,
+    opacity 200ms ease;
+  animation: appear ease-in-out 1000ms forwards 100ms;
+  grid-row: 2;
+
+  &.show {
+    height: 100%;
+    opacity: 1 !important;
+  }
 }
 
-.name {
-  font-size: var(--text-sm);
-  text-align: center;
-}
-
-.desc {
+.title {
+  width: 100%;
   font-size: var(--text-xs);
-  text-align: left;
+}
+
+.artist {
+  width: 100%;
+  font-size: var(--text-xs);
   overflow-wrap: break-word;
 }
 
@@ -164,34 +162,17 @@ img {
 }
 
 @media (width >= 48rem) {
-  .container {
-    gap: 2rem;
+  img {
+    width: 8rem;
+    height: 8rem;
   }
 
-  .selectorIndicator {
-    width: 7rem;
-    transform: translateX(calc(8.5rem * var(--offset)));
-  }
+  .imageContainer {
+    --offsetX: calc(var(--offset) * 5rem);
 
-  .selector {
-    width: 7.5rem;
-    padding: 0.75rem 0.25rem;
-    font-size: var(--text-md);
-  }
-
-  #imageContainer {
-    --offsetX: calc(var(--offset) * 7rem);
-    --rotateY: 40deg;
-    width: 12rem;
-    height: 12rem;
-
-    &.default {
-      top: 25%;
-      scale: 1.25;
-    }
-  }
-
-  .textContainer {
-    width: 15rem;
+    transition:
+      transform 400ms ease,
+      scale 500ms ease,
+      opacity 350ms ease;
   }
 }
