@@ -9,7 +9,10 @@ import Socials from "../components/socials.astro";
     <Socials />
   </div>
 
-  <div id="mobile"></div>
+  <div id="mobile">
+    <img class="mobileLogo" src="sciborgs.webp" />
+    <button style="width: 3rem; height: 3rem; background-color: red;"></button>
+  </div>
 </div>
 
 <style>
@@ -29,8 +32,15 @@ import Socials from "../components/socials.astro";
 
   .logo {
     display: block;
-    width: 15rem;
+    width: 20rem;
     height: auto;
+    animation: appear 1.5s ease forwards;
+  }
+
+  .mobileLogo {
+    display: block;
+    width: auto;
+    height: 4rem;
     animation: appear 1.5s ease forwards;
   }
 
@@ -40,11 +50,23 @@ import Socials from "../components/socials.astro";
   }
 
   #mobile {
-    position: absolute;
+    position: fixed;
     top: 0;
+    z-index: 101;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: 10rem;
-    background-color: red;
+    height: 6rem;
+    padding: 0.75rem;
+    background: linear-gradient(to bottom, #a3854d, rgb(255 0 0 / 0%));
+    transition: transform 750ms ease-out;
+    pointer-events: none;
+    transform: translateY(-10rem);
+  }
+
+  .activeMobile {
+    transform: translateY(0) !important;
   }
 
   @keyframes appear {
@@ -76,8 +98,19 @@ import Socials from "../components/socials.astro";
   }
 </style>
 
-<script>
-  window.addEventListener("scroll", () => {
-    console.log(window.scrollY);
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("mobile");
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+          header.classList.add("activeMobile");
+        } else {
+          header.classList.remove("activeMobile");
+        }
+      });
+    }
   });
 </script>

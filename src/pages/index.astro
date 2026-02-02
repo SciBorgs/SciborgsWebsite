@@ -6,16 +6,8 @@ import Members from "./members.tsx";
 ---
 
 <Layout>
-  <div class="container">
-    <Team />
-    <Members client:load />
-    <Media /> <!-- Causes violation of unload  -->
-  </div>
+  <Team />
+  <Members client:load />
+  <Media />
+  <!-- Causes violation of unload  -->
 </Layout>
-
-<style lang="scss">
-  .container {
-    height: 100vh;
-    overflow-x: hidden;
-  }
-</style>
