@@ -22,7 +22,6 @@
 
 html {
   box-sizing: border-box;
-  overflow: hidden auto;
 }
 
 body {
@@ -31,6 +30,8 @@ body {
   font-weight: 400;
   color: var(--white-but-not);
   background-color: var(--color-bg);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 ul {
