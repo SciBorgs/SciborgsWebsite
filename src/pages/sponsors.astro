@@ -1,9 +1,92 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Donate from "./donate.astro";
+
+const tier4 = [{ src: "/sponsors/download.png", href: "" }];
+const tier3 = [{ src: "/sponsors/download.png", href: "" }];
+const tier2 = [{ src: "/sponsors/download.png", href: "" }];
+const tier1 = [{ src: "/sponsors/download.png", href: "" }];
 ---
 
 <Layout>
-  <div style="width: 5rem; height: 5rem; background-color: red;">
-    <h1>Hello!</h1>
+  <div class="container">
+    <h1 class="header">Donate</h1>
+    <Donate />
+    <h1 class="header">Sponsors</h1>
+    <div class="sponsorContainer">
+      <h1 class="tier">Tier 4</h1>
+      {
+        tier4.map((sponsor) => (
+          <a href={sponsor.href} class="logoContainer">
+            <img src={sponsor.src} class="logo" />
+          </a>
+        ))
+      }
+    </div>
+    <div class="sponsorContainer">
+      <h1 class="tier">Tier 4</h1>
+      {
+        tier3.map((sponsor) => (
+          <a href={sponsor.href} class="logoContainer">
+            <img src={sponsor.src} class="logo" />
+          </a>
+        ))
+      }
+    </div>
+    <div class="sponsorContainer">
+      <h1 class="tier">Tier 4</h1>
+      {
+        tier2.map((sponsor) => (
+          <a href={sponsor.href} class="logoContainer">
+            <img src={sponsor.src} class="logo" />
+          </a>
+        ))
+      }
+    </div>
+    <div class="sponsorContainer">
+      <h1 class="tier">Tier 4</h1>
+      {
+        tier1.map((sponsor) => (
+          <a href={sponsor.href} class="logoContainer">
+            <img src={sponsor.src} class="logo" />
+          </a>
+        ))
+      }
+    </div>
   </div>
 </Layout>
+
+<style>
+  .container {
+    overflow: hidden visible;
+    padding: 5.5rem 1.25rem;
+  }
+
+  .header {
+    text-align: center;
+    font-size: var(--text-5xl);
+    margin-block: 0.5rem;
+  }
+
+  .tier {
+    text-align: center;
+    font-size: var(--text-3xl);
+  }
+
+  .sponsorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .logoContainer {
+    padding: 1rem;
+    border: 0.25rem var(--white-but-not) solid;
+    border-radius: 0.25rem;
+  }
+
+  .logo {
+    width: 100%;
+    height: auto;
+  }
+</style>
