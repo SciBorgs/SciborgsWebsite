@@ -1,29 +1,14 @@
 ---
-import { Icon } from "astro-icon/components";
 import Socials from "../components/socials.astro";
 ---
 
-<>
-  <div id="mobileTab">
-    <div class="section"></div>
-    <div class="outerSection" onclick="appearTab()"></div>
+<div class="container">
+  <div>
+    <img class="logo" src="sciborgs.webp" />
+    <h1 class="header">FRC Team 1155</h1>
+    <Socials />
   </div>
-
-  <div id="mobile">
-    <img class="mobileLogo" src="sciborgs.webp" />
-    <div id="mobileIcon" onclick="appearTab()">
-      <Icon id="icon" name="mdi:menu" />
-    </div>
-  </div>
-
-  <div class="container">
-    <div>
-      <img class="logo" src="sciborgs.webp" />
-      <h1 class="header">FRC Team 1155</h1>
-      <Socials />
-    </div>
-  </div>
-</>
+</div>
 
 <style lang="scss">
   .container {
@@ -52,85 +37,6 @@ import Socials from "../components/socials.astro";
     font-size: var(--text-2xl);
     text-align: center;
   }
-
-  #mobileTab {
-    position: fixed;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    z-index: 102;
-    flex-direction: row-reverse;
-    transform: translateX(100%);
-    transition:
-      transform 500ms ease-in-out,
-      background-color 150ms ease-in-out;
-    background-color: transparent;
-
-    &.appearTab {
-      background-color: rgba(0, 0, 0, 0.5);
-      transform: translateX(0);
-      visibility: visible;
-    }
-  }
-
-  .section {
-    width: 60%;
-    border-radius: 0.5rem;
-    background-color: #1b253c;
-
-    pointer-events: none;
-  }
-
-  .outerSection {
-    flex-grow: 1;
-  }
-
-  #mobile {
-    position: fixed;
-    top: 0;
-    z-index: 101;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 6rem;
-    padding: 0.75rem;
-    background: linear-gradient(to bottom, #a3854d, rgb(255 0 0 / 0%));
-    transition: transform 750ms ease-out;
-    pointer-events: none;
-    transform: translateY(-10rem);
-
-    &.activeMobile {
-      transform: translateY(0);
-    }
-  }
-
-  .mobileLogo {
-    display: block;
-    width: auto;
-    height: 4rem;
-    animation: appear 1.5s ease forwards;
-  }
-
-  #mobileIcon {
-    padding: 0.25rem;
-    display: inline-flex;
-    border: 2px var(--white-but-not) solid;
-    filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 50%));
-    border-radius: 0.25rem;
-    pointer-events: auto !important;
-
-    &.tap {
-      animation: scaleUp 500ms ease-out;
-    }
-  }
-
-  #icon {
-    width: auto;
-    height: 2rem;
-    color: var(--white-but-not);
-  }
-
   @keyframes appear {
     from {
       opacity: 0;
@@ -143,18 +49,6 @@ import Socials from "../components/socials.astro";
     }
   }
 
-  @keyframes scaleUp {
-    0% {
-      transform: scale(1);
-    }
-    25% {
-      transform: scale(1.3);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
   @media (width >= 48rem) {
     .logo {
       width: 50rem;
@@ -163,11 +57,6 @@ import Socials from "../components/socials.astro";
     .header {
       font-size: var(--text-3xl);
       text-align: left;
-    }
-
-    #mobile {
-      visibility: hidden;
-      height: 0;
     }
   }
 </style>
@@ -189,30 +78,4 @@ import Socials from "../components/socials.astro";
       });
     }
   });
-
-  const mobileIcon = document.getElementById("mobileIcon");
-  mobileIcon.addEventListener("touchstart", () => {
-    mobileIcon.classList.remove("tap");
-    void mobileIcon.offsetWidth;
-    mobileIcon.classList.add("tap");
-  });
-
-  function preventScroll(e) {
-    e.preventDefault();
-  }
-
-  let currContain = false;
-  function appearTab() {
-    const tab = document.getElementById("mobileTab");
-    currContain = !currContain;
-    if (currContain) {
-      window.addEventListener("touchmove", preventScroll, { passive: false });
-      window.addEventListener("wheel", preventScroll, { passive: false });
-      tab.classList.add("appearTab");
-    } else {
-      window.removeEventListener("touchmove", preventScroll);
-      window.removeEventListener("wheel", preventScroll);
-      tab.classList.remove("appearTab");
-    }
-  }
 </script>

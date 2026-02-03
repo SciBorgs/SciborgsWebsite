@@ -1,0 +1,152 @@
+---
+import { Icon } from "astro-icon/components";
+
+const pages = [
+  { name: "Home", href: "/" },
+  { name: "Sponsors", href: "/sponsors" },
+];
+
+const path = Astro.url.pathname;
+---
+
+<>
+  <div id="mobileTab">
+    <div class="section">
+      {
+        pages.map((page) => (
+          <a class="link" href={page.href}>
+            <Icon
+              id="icon"
+              name="mdi:chevron-double-right"
+              style={{ visibility: path == page.href ? "visible" : "hidden" }}
+            />
+            <h1 data-tap="tap">{page.name}</h1>
+          </a>
+        ))
+      }
+    </div>
+    <div class="outerSection" onclick="appearTab()"></div>
+  </div>
+
+  <div id="mobile">
+    <img class="mobileLogo" src="sciborgs.webp" />
+    <div data-tap="tap" class="mobileIcon" onclick="appearTab()">
+      <Icon id="icon" name="mdi:menu" />
+    </div>
+  </div>
+</>
+
+<style lang="scss">
+  #mobileTab {
+    position: fixed;
+    z-index: 102;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    transition:
+      transform 500ms ease-in-out,
+      background-color 350ms ease-in-out;
+    transform: translateX(100%);
+
+    &.appearTab {
+      visibility: visible;
+      background-color: rgb(0 0 0 / 50%);
+      transform: translateX(0);
+    }
+  }
+
+  .section {
+    width: 60%;
+    background-color: #1b253c;
+    border-radius: 0.5rem;
+    pointer-events: none;
+  }
+
+  .outerSection {
+    flex-grow: 1;
+  }
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #mobile {
+    position: fixed;
+    top: 0;
+    z-index: 101;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 6rem;
+    padding: 0.75rem;
+    background: linear-gradient(to bottom, #a3854d, rgb(255 0 0 / 0%));
+    transition: transform 1s ease;
+    pointer-events: none;
+    transform: translateY(-10rem);
+
+    &.activeMobile {
+      transform: translateY(0);
+    }
+  }
+
+  .mobileLogo {
+    display: block;
+    width: auto;
+    height: 4rem;
+    animation: appear 1.5s ease forwards;
+  }
+
+  .mobileIcon {
+    display: inline-flex;
+    padding: 0.25rem;
+    border: 2px var(--white-but-not) solid;
+    border-radius: 0.25rem;
+    filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 50%));
+    pointer-events: auto !important;
+  }
+
+  #icon {
+    width: auto;
+    height: 2rem;
+    color: var(--white-but-not);
+  }
+
+  @media (width >= 48rem) {
+    #mobile {
+      visibility: hidden;
+      height: 0;
+    }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.location.pathname == "/") return;
+    const header = document.getElementById("mobile");
+    header.classList.add("activeMobile");
+  });
+
+  function preventScroll(e) {
+    e.preventDefault();
+  }
+
+  let currContain = false;
+  function appearTab() {
+    const tab = document.getElementById("mobileTab");
+    currContain = !currContain;
+    if (currContain) {
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      tab.classList.add("appearTab");
+    } else {
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("wheel", preventScroll);
+      tab.classList.remove("appearTab");
+    }
+  }
+</script>
