@@ -2,9 +2,14 @@
 import { Icon } from "astro-icon/components";
 
 const showEmail = false;
+const emails = [
+  "firstinitiallastname@example.com",
+  "firstinitiallastname@example.com",
+];
 ---
 
 <div class="container">
+  <h1 class="mainHeader">Donate</h1>
   <img class="tiers" src="/sponsorTiers.png" />
   <p>
     Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex
@@ -14,22 +19,32 @@ const showEmail = false;
     lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti
     sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
   </p>
-  <p>Donate At:</p>
+  <h3 class="donateHeader">Consider donating!</h3>
   <div class="emailContainer">
     <div id="toggleEmails">
       <Icon id="selector" name="mdi:menu-right" />
-      <p>Toggle to show emails</p>
+      <p>Show Emails</p>
     </div>
     <div id="emailsContainer">
-      <h2 class="header">SciBorgs Contact</h2>
-      <h2 class="header">Sponsorships Lead</h2>
-      <p>(quicker response time)</p>
+      <div style="padding: 0.5rem;">
+        <h3 class="header">Sciborgs Contact</h3>
+        <p>{emails[0]}</p>
+        <h3 class="header">Sponsorships Lead</h3>
+        <p class="miniInfo">(quicker response time)</p>
+        <p>{emails[1]}</p>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
   .container {
+  }
+
+  .mainHeader {
+    text-align: center;
+    font-size: var(--text-5xl);
+    margin-block: 0.5rem;
   }
 
   .tiers {
@@ -40,23 +55,28 @@ const showEmail = false;
     border-radius: 0.25rem;
   }
 
+  .donateHeader {
+    margin-block: 0.5rem;
+  }
+
   .emailContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
+    outline: 1px solid var(--white-but-not);
+    outline-offset: -1px;
   }
 
   #toggleEmails {
     display: flex;
     align-items: center;
     padding: 0.5rem;
-    border: 1px black solid;
     width: 100%;
     height: 100%;
   }
 
   #selector {
-    transition: rotate 150ms ease-in-out;
+    transition: rotate 350ms ease;
     rotate: 0deg;
   }
 
@@ -67,16 +87,21 @@ const showEmail = false;
   #emailsContainer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 150ms ease-in-out;
+    border-top: 1px solid white;
+    transition: max-height 350ms ease-in-out;
   }
 
   #emailsContainer.emailExpand {
-    max-height: 500px;
-    overflow: visible;
+    max-height: var(--max-height);
   }
 
   .header {
-    margin-block: 0;
+    margin-block: 0rem;
+  }
+
+  .miniInfo {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.25);
   }
 </style>
 
@@ -93,4 +118,5 @@ const showEmail = false;
     container.classList.toggle("emailExpand", showEmail);
     icon.classList.toggle("activeIcon", showEmail);
   });
+  container.style.setProperty("--max-height", `${container.scrollHeight}px`);
 </script>

@@ -1,22 +1,37 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Donate from "./donate.astro";
+import { Icon } from "astro-icon/components";
 
-const tier4 = [{ src: "/sponsors/download.png", href: "" }];
-const tier3 = [{ src: "/sponsors/download.png", href: "" }];
-const tier2 = [{ src: "/sponsors/download.png", href: "" }];
-const tier1 = [{ src: "/sponsors/download.png", href: "" }];
+const byte = [{ src: "/sponsors/download.png", href: "" }];
+const kilobyte = [{ src: "/sponsors/download.png", href: "" }];
+const megabyte = [{ src: "/sponsors/download.png", href: "" }];
+const gigabyte = [{ src: "/sponsors/download.png", href: "" }];
+const terabyte = [{ src: "/sponsors/download.png", href: "" }];
 ---
 
 <Layout>
   <div class="container">
-    <h1 class="header">Donate</h1>
     <Donate />
+    <div class="divider"></div>
     <h1 class="header">Sponsors</h1>
     <div class="sponsorContainer">
-      <h1 class="tier">Tier 4</h1>
+      <h1 class="tier">Byte</h1>
       {
-        tier4.map((sponsor) => (
+        byte.map((sponsor) => (
+          <div class="sponsor">
+            {/* <Icon class="background" name="backgroundTest" /> */}
+            <a href={sponsor.href} class="logoContainer">
+              <img src={sponsor.src} class="logo" />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+    <div class="sponsorContainer">
+      <h1 class="tier">Kilobyte</h1>
+      {
+        kilobyte.map((sponsor) => (
           <a href={sponsor.href} class="logoContainer">
             <img src={sponsor.src} class="logo" />
           </a>
@@ -24,9 +39,9 @@ const tier1 = [{ src: "/sponsors/download.png", href: "" }];
       }
     </div>
     <div class="sponsorContainer">
-      <h1 class="tier">Tier 4</h1>
+      <h1 class="tier">Megabyte</h1>
       {
-        tier3.map((sponsor) => (
+        megabyte.map((sponsor) => (
           <a href={sponsor.href} class="logoContainer">
             <img src={sponsor.src} class="logo" />
           </a>
@@ -34,9 +49,9 @@ const tier1 = [{ src: "/sponsors/download.png", href: "" }];
       }
     </div>
     <div class="sponsorContainer">
-      <h1 class="tier">Tier 4</h1>
+      <h1 class="tier">Gigabyte</h1>
       {
-        tier2.map((sponsor) => (
+        megabyte.map((sponsor) => (
           <a href={sponsor.href} class="logoContainer">
             <img src={sponsor.src} class="logo" />
           </a>
@@ -44,9 +59,9 @@ const tier1 = [{ src: "/sponsors/download.png", href: "" }];
       }
     </div>
     <div class="sponsorContainer">
-      <h1 class="tier">Tier 4</h1>
+      <h1 class="tier">Terabyte</h1>
       {
-        tier1.map((sponsor) => (
+        terabyte.map((sponsor) => (
           <a href={sponsor.href} class="logoContainer">
             <img src={sponsor.src} class="logo" />
           </a>
@@ -58,6 +73,7 @@ const tier1 = [{ src: "/sponsors/download.png", href: "" }];
 
 <style>
   .container {
+    position: relative;
     overflow: hidden visible;
     padding: 5.5rem 1.25rem;
   }
@@ -65,7 +81,15 @@ const tier1 = [{ src: "/sponsors/download.png", href: "" }];
   .header {
     text-align: center;
     font-size: var(--text-5xl);
-    margin-block: 0.5rem;
+    margin-block: 0rem;
+  }
+
+  .divider {
+    left: 0;
+    width: 100%;
+    border-bottom: 2px var(--white-but-not) solid;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .tier {
@@ -79,10 +103,21 @@ const tier1 = [{ src: "/sponsors/download.png", href: "" }];
     justify-content: center;
   }
 
+  .sponsor {
+    position: relative;
+  }
+
   .logoContainer {
+    display: flex;
     padding: 1rem;
-    border: 0.25rem var(--white-but-not) solid;
-    border-radius: 0.25rem;
+    border-radius: 0.125rem;
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
   }
 
   .logo {
