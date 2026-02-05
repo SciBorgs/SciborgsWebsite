@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import members from "../members.json";
+import members from "../../public/members.json";
 import styles from "../styles/_members.module.scss";
 import type { ImageParams } from "../types";
 import MoveImage from "../components/moveImage.tsx";

@@ -2,12 +2,23 @@
 import Layout from "../layouts/Layout.astro";
 import Donate from "./donate.astro";
 import { Icon } from "astro-icon/components";
+import sponsors from "../../public/sponsors.json";
 
-const byte = [{ src: "/sponsors/download.png", href: "" }];
-const kilobyte = [{ src: "/sponsors/download.png", href: "" }];
-const megabyte = [{ src: "/sponsors/download.png", href: "" }];
-const gigabyte = [{ src: "/sponsors/download.png", href: "" }];
-const terabyte = [{ src: "/sponsors/download.png", href: "" }];
+const byte = sponsors.filter((sponsor) => {
+  return sponsor.type === "0";
+});
+const kilobyte = sponsors.filter((sponsor) => {
+  return sponsor.type === "1";
+});
+const megabyte = sponsors.filter((sponsor) => {
+  return sponsor.type === "2";
+});
+const gigabyte = sponsors.filter((sponsor) => {
+  return sponsor.type === "3";
+});
+const terabyte = sponsors.filter((sponsor) => {
+  return sponsor.type === "4";
+});
 ---
 
 <Layout>
@@ -51,7 +62,7 @@ const terabyte = [{ src: "/sponsors/download.png", href: "" }];
     <div class="sponsorContainer">
       <h1 class="tier">Gigabyte</h1>
       {
-        megabyte.map((sponsor) => (
+        gigabyte.map((sponsor) => (
           <a href={sponsor.href} class="logoContainer">
             <img src={sponsor.src} class="logo" />
           </a>
@@ -105,6 +116,7 @@ const terabyte = [{ src: "/sponsors/download.png", href: "" }];
 
   .sponsor {
     position: relative;
+    background-color: green;
   }
 
   .logoContainer {

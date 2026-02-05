@@ -4,7 +4,7 @@ import Socials from "../components/socials.astro";
 
 <div class="container">
   <div>
-    <img class="logo" src="sciborgs.webp" />
+    <img class="logo" src="/sciborgs.webp" />
     <h1 class="header">FRC Team 1155</h1>
     <Socials />
   </div>
@@ -60,22 +60,3 @@ import Socials from "../components/socials.astro";
     }
   }
 </style>
-
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const header = document.getElementById("mobile");
-    const tab = document.getElementById("mobileTab");
-
-    const isMobile = window.innerWidth <= 768;
-
-    if (isMobile) {
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 200) {
-          header.classList.add("activeMobile");
-        } else {
-          header.classList.remove("activeMobile");
-        }
-      });
-    }
-  });
-</script>
