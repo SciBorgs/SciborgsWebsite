@@ -1,11 +1,10 @@
 [
-  { "type": "0", "src": "/sponsors/abacusBrands.svg", "href": "https://www.abacusbrands.com" },
-  { "type": "0", "src": "/sponsors/backdropcom.svg", "href": "https://backdrop.com/" },
-  { "type": "0", "src": "/sponsors/bxscialumni.svg", "href": "https://alumni.bxscience.edu/" },
-  { "type": "0", "src": "/sponsors/ESRG.svg", "href": "https://www.energyresponsegroup.com/" },
-  { "type": "0", "src": "/sponsors/lastAnvil.svg", "href": "https://lastanvil.com/"},
-  { "type": "0", "src": "/sponsors/NYCFIRST.svg", "href": "https://www.nycfirst.org/" },
-  { "type": "0", "src": "/sponsors/onlineMetals.svg", "href": "https://www.onlinemetals.com/" },
-  { "type": "0", "src": "/sponsors/optimum.svg", "href": "https://www.optimum.net/" },
-  { "type": "0", "src": "/sponsors/waldRealEstate.svg", "href": "https://www.waldrealestate.com/" }
+  { "type": "0", "src": "sponsors/abacusBrands", "href": "https://www.abacusbrands.com" },
+  { "type": "1", "src": "sponsors/backdropcom", "href": "https://backdrop.com/" },
+  { "type": "2", "src": "sponsors/bxscialumni", "href": "https://alumni.bxscience.edu/" },
+  { "type": "3", "src": "sponsors/ESRG", "href": "https://www.energyresponsegroup.com/" },
+  { "type": "4", "src": "sponsors/lastAnvil", "href": "https://lastanvil.com/"},
+  { "type": "5", "src": "sponsors/NYCFIRST", "href": "https://www.nycfirst.org/" },
+  { "type": "0", "src": "sponsors/onlineMetals", "href": "https://www.onlinemetals.com/" },
+  { "type": "0", "src": "sponsors/optimum", "href": "https://www.optimum.net/" }
 ]

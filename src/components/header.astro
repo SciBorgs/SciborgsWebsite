@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 
 const pages = [
   { name: "Sponsors", href: "/sponsors" },
-  { name: "Donate", href: "/sponsors" },
+  { name: "Donate", href: "/donate" },
 ];
 
 const path = Astro.url.pathname;
@@ -12,16 +12,16 @@ const path = Astro.url.pathname;
 <div class="container">
   <div id="navBar">
     <a data-tap="1.1" href="/">
-      <img class="mobileLogo" src="sciborgs.webp" />
+      <img class="logo" src="sciborgs.webp" />
     </a>
     <div class="tabs">
       {
         pages.map((page) => (
-          <a class="link" data-tap="1.1" href={page.href}>
+          <a class="link tab" data-tap="1.2" href={page.href}>
             <h1>{page.name}</h1>
           </a>
         ))
-      }
+      } 
     </div>
     <div data-tap="1.3" class="mobileIcon" onclick="appearTab()">
       <Icon id="icon" name="mdi:menu" />
@@ -49,9 +49,9 @@ const path = Astro.url.pathname;
 <style lang="scss">
   .container {
     position: fixed;
+    z-index: 101;
     width: 100vw;
     height: 100vh;
-    z-index: 101;
     pointer-events: none;
   }
 
@@ -73,15 +73,19 @@ const path = Astro.url.pathname;
     }
   }
 
-  .mobileLogo {
+  .logo {
     display: block;
     width: auto;
     height: 4rem;
-    animation: appear 1.5s ease forwards;
+    filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 50%));
   }
 
   .tabs {
     display: none;
+  }
+
+  .tab {
+    background-color: var(--color-bg);
   }
 
   .mobileIcon {
@@ -110,8 +114,8 @@ const path = Astro.url.pathname;
     transition:
       transform 500ms ease-in-out,
       background-color 350ms ease-in-out;
-    transform: translateX(100%);
     pointer-events: auto;
+    transform: translateX(100%);
 
     &.appearTab {
       visibility: visible;
@@ -154,8 +158,8 @@ const path = Astro.url.pathname;
 
     .link {
       padding: 0.25rem;
-      border-radius: 0.125rem;
       border: 1px var(--white-but-not) solid;
+      border-radius: 0.125rem;
     }
   }
 </style>

@@ -47,7 +47,8 @@ import "../styles/_base.scss";
       }
     });
 
-    document.addEventListener("touchstart", (element) => {
+    document.addEventListener("pointerdown", (element) => {
+      console.log("hello!");
       const selected = element.target.closest("[data-tap]");
       if (!selected) return;
 
