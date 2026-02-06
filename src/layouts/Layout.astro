@@ -1,5 +1,5 @@
 ---
-import MobileHeader from "../components/header.astro";
+import Header from "../components/header.astro";
 import "../styles/_base.scss";
 ---
 
@@ -21,34 +21,42 @@ import "../styles/_base.scss";
     <meta name="theme-color" content="#a3854d" />
   </head>
   <body>
-    <MobileHeader />
+    <Header />
     <slot />
   </body>
   <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
-      const header = document.getElementById("mobile");
-      const tab = document.getElementById("mobileTab");
-
       const isMobile = window.innerWidth <= 768;
+      const navBar = document.getElementById("navBar");
+
+      if (window.location.pathname != "/") {
+        navBar.classList.add("activeMobile");
+        return;
+      }
 
       if (isMobile) {
         window.addEventListener("scroll", () => {
           if (window.scrollY > 200) {
-            header.classList.add("activeMobile");
+            navBar.classList.add("activeMobile");
           } else {
-            header.classList.remove("activeMobile");
+            navBar.classList.remove("activeMobile");
           }
         });
+      } else {
+        navBar.classList.add("activeMobile");
       }
     });
-    
-    document.addEventListener("touchstart", (e) => {
-      const el = e.target.closest("[data-tap]");
-      if (!el) return;
 
-      el.classList.remove("tap");
-      void el.offsetWidth;
-      el.classList.add("tap");
+    document.addEventListener("touchstart", (element) => {
+      const selected = element.target.closest("[data-tap]");
+      if (!selected) return;
+
+      const scale = selected.dataset.tap;
+      selected.style.setProperty("--scale", scale);
+
+      selected.classList.remove("tap");
+      void selected.offsetWidth;
+      selected.classList.add("tap");
     });
   </script>
 </html>
