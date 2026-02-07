@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import members from "../members.json";
 import styles from "../styles/_members.module.scss";
 import type { ImageParams } from "../types";
@@ -20,6 +20,8 @@ export default function Members() {
   const [images, setImages] = useState<ImageParams[]>(defaultImages);
 
   const departments = ["Programming", "Construction", "Electronics"];
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const [maxHeight, setMax] = useState<number>(0);
 
   useEffect(() => {
     const filteredImages = members.filter((_, i) => {
@@ -27,6 +29,12 @@ export default function Members() {
       return i >= groups[selected][0] && i <= groups[selected][1];
     });
     setImages(filteredImages);
+
+    const container = textRef.current;
+
+    if (container) {
+      setMax(container?.offsetHeight);
+    }
   }, [selected]);
 
   return (
@@ -79,14 +87,27 @@ export default function Members() {
             >
               <div className={styles.gridContainer}>
                 {ifActive ? (
-                  <MoveImage src={image.src} onClick={() => setCurr(i)} />
+                  <MoveImage
+                    src={image.src}
+                    className={styles.image}
+                    onClick={() => setCurr(i)}
+                  />
                 ) : (
                   <img src={image.src} onClick={() => setCurr(i)} />
                 )}
 
-                <div className={`${styles.textContainer} ${appearText}`}>
-                  <h1 className={styles.title}>{image.name}</h1>
-                  <h1 className={styles.artist}>by {image.desc}</h1>
+                <div
+                  id={styles.textContainer}
+                  className={appearText}
+                  ref={textRef}
+                  style={
+                    { "--maxHeight": `${maxHeight}px` } as React.CSSProperties
+                  }
+                >
+                  <div style={{ padding: "0.25rem 0.375rem" }}>
+                    <h1 className={styles.title}>{image.name}</h1>
+                    <h1 className={styles.artist}>by {image.desc}</h1>
+                  </div>
                 </div>
               </div>
             </div>

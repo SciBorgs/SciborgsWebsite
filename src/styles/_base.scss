@@ -26,17 +26,28 @@
   --font-poppins: "Poppins", sans-serif;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 html {
   box-sizing: border-box;
 }
 
 body {
-  overflow: hidden auto;
   margin: 0;
   font-family: var(--font-comfortaa), sans-serif;
   font-weight: 400;
   color: var(--white-but-not);
   background-color: var(--color-bg);
+  overflow: hidden auto;
+}
+
+.handleNav {
+  position: sticky;
+  height: 100svh;
 }
 
 a {
@@ -72,10 +83,16 @@ li {
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+.header {
+  font-size: var(--text-5xl);
+  text-align: center;
+  margin-block: 0.75rem;
+  filter: drop-shadow(3px 3px 5px rgb(0 0 0));
+}
+
+.smHeader {
+  font-size: var(--text-2xl);
+  margin-block: 0.65rem;
 }
 
 [data-tap].tap {

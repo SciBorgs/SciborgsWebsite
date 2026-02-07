@@ -3,27 +3,23 @@ import Socials from "../components/socials.astro";
 ---
 
 <div class="container">
-  <div>
-    <img class="logo" src="/sciborgs.webp" />
-    <h1 class="header">FRC Team 1155</h1>
-    <Socials />
-  </div>
+  <img class="logo" src="/sciborgs.webp" />
+  <h1 class="header">FRC Team 1155</h1>
+  <Socials />
 </div>
 
 <style lang="scss">
   .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    align-items: center;
     padding: 0.5rem 1rem;
-    background: #a3854d;
     background: linear-gradient(
       180deg,
       rgb(163 133 77 / 100%) 0%,
       rgb(17 24 39 / 100%) 100%
     );
-    background-color: var(--color-black);
   }
 
   .logo {

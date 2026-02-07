@@ -10,8 +10,8 @@
   --rotateX: 5deg;
   --rotateY: 0deg;
 
-  width: 5rem;
-  height: 5rem;
+  width: 100%;
+  height: 100%;
   transition: transform 500ms ease;
   transform: perspective(31.25rem) rotateY(var(--rotateY))
     rotateX(var(--rotateX));
