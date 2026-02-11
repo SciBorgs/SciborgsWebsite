@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import members from "../members.json";
 import styles from "../styles/_members.module.scss";
-import type { ImageParams } from "../types";
-import MoveImage from "../components/moveImage.tsx";
+import type { ImageParams } from "../types.ts";
+import MoveImage from "./moveImage.tsx";
 
-export default function Members() {
+export default function DisplayMembers() {
   const groups: Record<number, [number, number]> = {
     0: [0, 6],
     1: [3, 4],
@@ -39,9 +39,6 @@ export default function Members() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <h1>Members</h1>
-      </div>
       <div className={styles.selectorContainer}>
         {departments.map((department, i) => {
           return (

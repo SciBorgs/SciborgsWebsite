@@ -1,13 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Team from "./team.astro";
-import Media from "./media.astro";
-import Members from "../components/members";
+import Team from "../components/team.astro";
+import Media from "../components/media.astro";
+import About from "../components/about.astro";
 ---
 
 <Layout>
   <Team />
-  <Members client:load />
+  <About />
   <Media />
-  <!-- Causes violation of unload  -->
 </Layout>

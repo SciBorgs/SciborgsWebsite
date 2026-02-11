@@ -2,6 +2,8 @@
 import { Icon } from "astro-icon/components";
 
 const pages = [
+  { name: "History", href: "/history" },
+  { name: "Members", href: "/members" },
   { name: "Sponsors", href: "/sponsors" },
   { name: "Donate", href: "/donate" },
 ];
@@ -10,7 +12,7 @@ const pages = [
 <div class="container">
   <div id="navBar">
     <a data-tap="1.1" href="/">
-      <img class="logo" src="sciborgs.webp" />
+      <img class="logo" src="/sciborgs.webp" />
     </a>
     <div class="tabs">
       {
@@ -191,6 +193,7 @@ const pages = [
       filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 50%));
       border: none !important;
       transition: transform 250ms ease-in-out;
+      font-size: var(--text-sm); 
 
       &:hover {
         transform: scale(1.2);

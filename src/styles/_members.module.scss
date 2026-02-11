@@ -2,7 +2,6 @@ img, .image {
   display: block;
   width: 8rem;
   height: 8rem;
-  filter: drop-shadow(3px 3px 5px #000);
   object-fit: cover;
   pointer-events: auto;
 }
@@ -10,14 +9,6 @@ img, .image {
 .container {
   display: flex;
   flex-direction: column;
-}
-
-.header {
-  text-align: center;
-
-  h1 {
-    font-size: var(--text-4xl);
-  }
 }
 
 .selectorContainer {

@@ -1,0 +1,191 @@
+[
+  {
+    "year": 2025,
+    "seasonName": "Reefscape",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah",
+      "src": "https://i.imgur.com/Yk304Rm.jpeg"
+    }
+  },
+  {
+    "year": 2024,
+    "seasonName": "Cresendo",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah",
+      "src": "https://i.imgur.com/arip0Be.jpeg"
+    }
+  },
+  {
+    "year": 2023,
+    "seasonName": "Charged Up",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah",
+      "src": "https://i.imgur.com/vvmBpFL.jpeg"
+    }
+  },
+  {
+    "year": 2022,
+    "seasonName": "Rapid React",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah",
+      "src": "https://i.imgur.com/lRVPvJ1.jpeg"
+    }
+  },
+  {
+    "year": 2021,
+    "seasonName": "Infinite Recharge",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2020,
+    "seasonName": "Infinite Recharge",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2019,
+    "seasonName": "Destination: Deep Space",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah",
+      "src": "https://i.imgur.com/1L5lO8K.jpeg"
+    }
+  },
+  {
+    "year": 2018,
+    "seasonName": "FIRST Power Up",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2017,
+    "seasonName": "FIRST SteamWorks",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2016,
+    "seasonName": "FIRST Stronghold",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2015,
+    "seasonName": "Recycle Rush",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2014,
+    "seasonName": "Aerial Assist",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2013,
+    "seasonName": "Ultimate Ascent",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2012,
+    "seasonName": "Rebound Rumble",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2011,
+    "seasonName": "Logo Motion",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2010,
+    "seasonName": "Breakaway",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2009,
+    "seasonName": "Lunacy",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2008,
+    "seasonName": "FIRST Overdrive",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2007,
+    "seasonName": "Rack 'N' Roll",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2006,
+    "seasonName": "Aim High",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2005,
+    "seasonName": "Triple Play",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2004,
+    "seasonName": "FIRST Frenzy",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  },
+  {
+    "year": 2003,
+    "seasonName": "Stack Attack",
+    "robot": {
+      "name": "Wow",
+      "desc": "Woah"
+    }
+  }
+]
