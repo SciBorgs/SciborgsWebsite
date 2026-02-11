@@ -8,7 +8,7 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
 
 <Layout>
   <div class="container">
-    <div id="navBar">
+    <div id="mobileBar">
       <div id="toggleSeasons" onclick="appearSeasons()">
         <Icon id="indicator" name="mdi:menu-right" />
         <h1>Team History</h1>
@@ -21,7 +21,7 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
             return (
               <a href={"/history/" + season.year}>
                 <p class="seasonHeader" style={`--delay: ${delay}s`}>
-                  {season.year + ": " + season.seasonName}
+                  {season.year + " -  " + season.seasonName}
                 </p>
               </a>
             );
@@ -29,6 +29,19 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
         }
       </div>
       <div class="divider"></div>
+    </div>
+    <div id="navBar">
+      {
+        sortedSeasons.map((season) => {
+          return (
+            <a href={"/history/" + season.year}>
+              <p class="seasonHeader">
+                {season.year + " - " + season.seasonName}
+              </p>
+            </a>
+          );
+        })
+      }
     </div>
     <slot />
   </div>
@@ -82,7 +95,7 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
     opacity: 0;
     padding: 0.5rem;
     text-align: left;
-    background-color: var(--color-yellow);
+    background-color: var(--color-green);
     border-radius: 0.25rem;
     transition: opacity 650ms ease;
   }
@@ -98,17 +111,37 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
     border-top: 1px var(--white-but-not) solid;
   }
 
-  .yearHeader {
-    display: flex;
-    width: 8rem;
-    height: 3rem;
-    background-color: red;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+  #navBar {
+    display: none;
+  }
+
+  @keyframes appear {
+    to {
+      opacity: 1;
+    }
   }
 
   @media (width >= 48rem) {
+    .container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #mobileBar {
+      display: none;
+    }
+
+    #navBar {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .seasonHeader {
+      opacity: 1;
+      border-radius: 0;
+      padding: 0;
+      margin-block: 0;
+    }
   }
 </style>
 
