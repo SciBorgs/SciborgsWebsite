@@ -3,6 +3,11 @@ import { YouTube } from "astro-embed";
 import { getLatestYoutubeVideo } from "../lib/youtube";
 
 const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
+
+const embedCode = `
+<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/REEL_ID/" data-instgrm-version="14"></blockquote>
+<script async src="//www.instagram.com/embed.js"></script>
+`;
 ---
 
 <div class="container">
@@ -27,9 +32,13 @@ const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
       <div class="socialContainer">
         <h2>Instagram</h2>
         <iframe
-          src="https://www.instagram.com/p/DFi2rKrJVMp/embed"
+          src="https://www.instagram.com/reel/DFi2rKrJVMp/embed"
           id="instagram"
-          class="instagram-media"></iframe>
+          class="instagram-media"
+          scrolling="no"
+          allowtransparency="true"
+        >
+        </iframe>
       </div>
     </div>
   </div>

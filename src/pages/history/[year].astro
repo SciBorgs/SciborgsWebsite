@@ -23,7 +23,7 @@ const selRobot = selSeason.robot;
 <SeasonLayout>
   <div class="container">
     <h1 class="robotHeader">{selRobot.name}</h1>
-    <h3 class="infoHeader">{"played in " + selSeason.seasonName + " - " + selSeason.year}</h1>
+    <h3 class="infoHeader">{"competed in " + selSeason.seasonName + " - " + selSeason.year}</h1>
     {selRobot.src ? <img class="robotImage" src={selRobot.src}/> : <></>}
     <a href=`https://www.thebluealliance.com/team/1155/${year}`>Blue Alliance!</a>
   </div>
@@ -34,6 +34,7 @@ const selRobot = selSeason.robot;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   .robotHeader {
@@ -41,12 +42,19 @@ const selRobot = selSeason.robot;
 
   .infoHeader {
     font-size: var(--text-sm);
-    color: rgba(255, 255, 255, 0.5);
+    color: rgb(255 255 255 / 50%);
   }
 
   .robotImage {
-    margin-top: 0.5rem;
     width: 16rem;
     height: auto;
+    margin-top: 0.5rem;
+  }
+
+  @media (width >= 48rem) {
+    .robotImage {
+      width: 20rem;
+      height: auto;
+    }
   }
 </style>

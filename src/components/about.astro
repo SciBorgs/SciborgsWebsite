@@ -1,30 +1,12 @@
+---
+import { school_desc } from "../../public/info.json";
+---
+
 <div class="container">
   <div class="infoSection">
     <img src="bxsci.webp" />
     <h1>Our School</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
-      ex sapien vitae pellentesque sqem placerat. In id cursus mi pretium tellus
-      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
-      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
-      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
-      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
-      himenaeos.
-    </p>
-  </div>
-
-  <div class="infoSection">
-    <img src="bxsci.webp" />
-    <h1>Our Team</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
-      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
-      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
-      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
-      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
-      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
-      himenaeos.
-    </p>
+    <p>{school_desc}</p>
   </div>
 </div>
 
@@ -42,9 +24,14 @@
     width: 80%;
     margin-inline: auto;
 
-    h1 {
+    h1, p {
       text-align: center;
       margin-block: 1.25rem;
+    }
+
+    p {
+      font-size: var(--text-sm);
+      margin-block: 0.5rem;
     }
   }
 
@@ -63,9 +50,9 @@
     }
 
     .infoSection {
+      gap: 1rem;
       grid-template-columns: auto auto;
       grid-template-rows: auto 1fr;
-      gap: 1rem;
 
       h1 {
         text-align: left;

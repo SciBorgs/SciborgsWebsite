@@ -112,6 +112,7 @@ img, .image {
 
 #textContainer {
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   align-items: flex-start;
   max-width: 14rem;
@@ -127,12 +128,11 @@ img, .image {
     opacity 200ms ease;
   animation: appear ease-in-out 1000ms forwards 100ms;
   grid-row: 2;
-  overflow: hidden;
 
   &.show {
     height: 100%;
-    opacity: 1 !important;
     border: 1px solid var(--white-but-not);
+    opacity: 1 !important;
   }
 }
 

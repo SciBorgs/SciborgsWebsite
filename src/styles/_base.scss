@@ -1,4 +1,5 @@
 :root {
+  --text-xxs: 0.5rem;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -32,22 +33,53 @@
   box-sizing: inherit;
 }
 
+html, body {
+  height: 100%;
+}
+
 html {
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 body {
+  overflow-y: auto;
+  overscroll-behavior: none;
   margin: 0;
   font-family: var(--font-comfortaa), sans-serif;
   font-weight: 400;
   color: var(--white-but-not);
   background-color: var(--color-bg);
-  overflow: hidden auto;
+  height: 100%;
 }
+
+// html, body {
+//   height: 100%;
+// }
+
+// html {
+//   box-sizing: border-box;
+//   overflow: hidden;
+// }
+
+// body {
+//   overflow-y: auto;
+//   overscroll-behavior: none;
+//   margin: 0;
+//   font-family: var(--font-comfortaa), sans-serif;
+//   font-weight: 400;
+//   color: var(--white-but-not);
+//   background-color: var(--color-bg);
+//   height: 100%;
+// }
 
 .handleNav {
   position: sticky;
   height: 100svh;
+}
+
+.safeView {
+  padding-top: 5rem !important;
 }
 
 img {
@@ -71,7 +103,8 @@ li {
 
 h1,
 h2,
-h3, p {
+h3,
+p {
   margin-block: 0.25rem;
 }
 
@@ -91,8 +124,8 @@ li {
 .header {
   font-size: var(--text-5xl);
   text-align: center;
-  margin-block: 0.75rem;
   filter: drop-shadow(3px 3px 5px rgb(0 0 0));
+  margin-block: 0.75rem;
 }
 
 .smHeader {
@@ -115,5 +148,12 @@ li {
 
   100% {
     transform: scale(1);
+  }
+}
+
+@media (width >= 48rem) {
+  html,
+  body {
+    overscroll-behavior: none;
   }
 }

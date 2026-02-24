@@ -1,9 +1,19 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../../layouts/Layout.astro";
-import robots from "../../history.json";
+import Seasons from "../../history.json";
 
-const sortedSeasons = robots.sort((a, b) => b.year - a.year);
+const sortedSeasons = Seasons.sort((a, b) => b.year - a.year);
+
+const { year } = Astro.params;
+const foundYear = Number(year);
+const season = Seasons.filter((season) => {
+  return season.year == foundYear;
+});
+const selSeason = season[0];
+
+const highestYear = Seasons[sortedSeasons.length - 1].year;
+const lowestYear = Seasons[0].year;
 ---
 
 <Layout>
@@ -19,10 +29,12 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
           sortedSeasons.map((season, i) => {
             const delay = i * 0.0325;
             return (
-              <a href={"/history/" + season.year}>
-                <p class="seasonHeader" style={`--delay: ${delay}s`}>
-                  {season.year + " -  " + season.seasonName}
-                </p>
+              <a
+                href={"/history/" + season.year}
+                class="seasonHeader"
+                style={`--delay: ${delay}s`}
+              >
+                <p>{season.year + " -  " + season.seasonName}</p>
               </a>
             );
           })
@@ -30,20 +42,50 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
       </div>
       <div class="divider"></div>
     </div>
-    <div id="navBar">
-      {
-        sortedSeasons.map((season) => {
-          return (
-            <a href={"/history/" + season.year}>
-              <p class="seasonHeader">
-                {season.year + " - " + season.seasonName}
-              </p>
-            </a>
-          );
-        })
-      }
+    <div id="seasonNav" class="safeView">
+      <div class="infoContainer">
+        <div>
+          <h1>{selSeason.seasonName}</h1>
+          <img class="FirstLogo" src={selSeason.src} />
+        </div>
+        <div class="arrowContainer">
+          {
+            foundYear != highestYear ? (
+              <a
+                href={`/history/${foundYear - 1}`}
+                data-tap="1.2"
+                class="arrow"
+              >
+                <Icon name="mdi:arrow-left" />
+              </a>
+            ) : (
+              <a href={`/history/${lowestYear}`} data-tap="1.2" class="arrow">
+                <Icon name="mdi:arrow-left" />
+              </a>
+            )
+          }
+
+          {
+            foundYear != lowestYear ? (
+              <a
+                href={`/history/${foundYear + 1}`}
+                data-tap="1.2"
+                class="arrow"
+              >
+                <Icon name="mdi:arrow-right" />
+              </a>
+            ) : (
+              <a href={`/history/${highestYear}`} data-tap="1.2" class="arrow">
+                <Icon name="mdi:arrow-right" />
+              </a>
+            )
+          }
+        </div>
+      </div>
     </div>
-    <slot />
+    <div class="innerContainer">
+      <slot />
+    </div>
   </div>
 </Layout>
 
@@ -82,9 +124,9 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
   }
 
   #seasonsContainer {
+    overflow: hidden;
     max-height: 0;
     transition: max-height 650ms ease;
-    overflow: hidden;
   }
 
   #seasonsContainer.expand {
@@ -93,17 +135,21 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
 
   .seasonHeader {
     opacity: 0;
-    padding: 0.5rem;
-    text-align: left;
-    background-color: var(--color-green);
-    border-radius: 0.25rem;
     transition: opacity 650ms ease;
+
+    p {
+      padding: 0.5rem;
+      text-align: left;
+      background-color: var(--color-green);
+      border-radius: 0.25rem;
+      margin-block: 0.25rem;
+    }
   }
 
   .animateHeader {
+    opacity: 1;
     transition: opacity 200ms ease;
     transition-delay: var(--delay);
-    opacity: 1;
   }
 
   .divider {
@@ -111,8 +157,14 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
     border-top: 1px var(--white-but-not) solid;
   }
 
-  #navBar {
+  #seasonNav {
     display: none;
+  }
+
+  .innerContainer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
   }
 
   @keyframes appear {
@@ -125,21 +177,63 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
     .container {
       display: flex;
       flex-direction: row;
+      padding: 0;
+      height: 100vh;
     }
 
     #mobileBar {
       display: none;
     }
 
-    #navBar {
+    #seasonNav {
       display: flex;
       flex-direction: column;
+      width: 40%;
+      height: 100%;
+      border-radius: 0rem 1.5rem 1.5rem 0rem;
+      background-color: var(--color-green);
+      padding: 5rem 2rem;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .infoContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 50%;
+    }
+
+    .FirstLogo {
+      flex-grow: 1;
+      width: 50%;
+      height: auto;
+    }
+
+    .arrowContainer {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .arrow {
+      display: flex;
+      border-radius: 0.5rem;
+      border: 2px var(--white-but-not) solid;
+      padding: 0.5rem;
+
+      svg {
+        font-size: var(--text-2xl);
+      }
+    }
+
+    #navBar::-webkit-scrollbar {
+      display: none;
     }
 
     .seasonHeader {
-      opacity: 1;
-      border-radius: 0;
       padding: 0;
+      border-radius: 0;
+      opacity: 1;
       margin-block: 0;
     }
   }
@@ -148,22 +242,21 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
 <script is:inline>
   let showSeasons = false;
   let isAnimating = false;
-  const container = document.getElementById("seasonsContainer");
 
   function appearSeasons() {
     if (isAnimating) return;
+    const seasonsContainer = document.getElementById("seasonsContainer");
     const icon = document.getElementById("indicator");
     const seasonHeaders = document.querySelectorAll(".seasonHeader");
 
     isAnimating = true;
     showSeasons = !showSeasons;
 
-    seasonHeaders.forEach(
-      (header) => header.classList.toggle("animateHeader"),
-      showSeasons,
+    seasonHeaders.forEach((header) =>
+      header.classList.toggle("animateHeader", showSeasons),
     );
-    container.classList.toggle("expand", showSeasons);
-    icon.classList.toggle("activeIcon", showSeasons);
+    seasonsContainer?.classList.toggle("expand", showSeasons);
+    icon?.classList.toggle("activeIcon", showSeasons);
 
     setTimeout(
       () => {
@@ -173,5 +266,15 @@ const sortedSeasons = robots.sort((a, b) => b.year - a.year);
     );
   }
 
-  container.style.setProperty("--max-height", `${container.scrollHeight}px`);
+  function setMaxSeasons() {
+    const seasonsContainer = document.getElementById("seasonsContainer");
+    isAnimating = false;
+    seasonsContainer?.style.setProperty(
+      "--max-height",
+      `${seasonsContainer.scrollHeight}px`,
+    );
+  }
+
+  document.addEventListener("DOMContentLoaded", setMaxSeasons);
+  document.addEventListener("astro:page-load", setMaxSeasons);
 </script>

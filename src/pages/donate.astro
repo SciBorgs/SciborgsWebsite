@@ -164,9 +164,9 @@ const sponsorGroups = types.map((type, index) => ({
   .tiersContainer {
     display: flex;
     flex-direction: column-reverse;
-    width: 100%;
     align-items: center;
     gap: 1.5rem;
+    width: 100%;
   }
 
   #divider {
@@ -178,10 +178,10 @@ const sponsorGroups = types.map((type, index) => ({
 
   .tierContainer {
     overflow: hidden;
+    width: 65%;
     background-color: var(--color-bg);
     border: 2px var(--white-but-not) solid;
     border-radius: 1.5rem;
-    width: 65%;
   }
 
   .tierHeader {
@@ -217,9 +217,9 @@ const sponsorGroups = types.map((type, index) => ({
       display: grid;
       gap: 1rem;
       padding: 0.5rem 2.5rem;
+      padding-top: 2.5rem;
       grid-template-columns: auto 1fr;
       grid-template-rows: auto 1fr;
-      padding-top: 2.5rem;
     }
 
     .donateHeader {
@@ -269,15 +269,24 @@ const sponsorGroups = types.map((type, index) => ({
 <script is:inline>
   let showEmail = false;
 
-  const toggle = document.getElementById("toggleEmails");
-  const container = document.getElementById("emailsContainer");
-  const icon = document.getElementById("emailSelector");
+  const toggleEmails = document.getElementById("toggleEmails");
+  const emailsContainer = document.getElementById("emailsContainer");
+  const emailSelector = document.getElementById("emailSelector");
 
-  toggle.addEventListener("click", () => {
+  toggleEmails.addEventListener("click", () => {
     showEmail = !showEmail;
 
-    container.classList.toggle("emailExpand", showEmail);
-    icon.classList.toggle("activeIcon", showEmail);
+    emailsContainer.classList.toggle("emailExpand", showEmail);
+    emailSelector.classList.toggle("activeIcon", showEmail);
   });
-  container.style.setProperty("--max-height", `${container.scrollHeight}px`);
+
+  function setMaxEmail() {
+    emailsContainer.style.setProperty(
+      "--max-height",
+      `${emailsContainer.scrollHeight}px`,
+    );
+  }
+
+  document.addEventListener("DOMContentLoaded", setMaxEmail);
+  document.addEventListener("astro:page-load", setMaxEmail);
 </script>

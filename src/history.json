@@ -2,6 +2,7 @@
   {
     "year": 2025,
     "seasonName": "Reefscape",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018251/FRC2025_f9y4b7.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah",
@@ -11,6 +12,7 @@
   {
     "year": 2024,
     "seasonName": "Cresendo",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018251/FRC2024_n4xjaa.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah",
@@ -20,6 +22,7 @@
   {
     "year": 2023,
     "seasonName": "Charged Up",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018250/FRC2023_jshkxh.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah",
@@ -29,6 +32,7 @@
   {
     "year": 2022,
     "seasonName": "Rapid React",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018249/FRC2022_ybcjtx.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah",
@@ -38,6 +42,7 @@
   {
     "year": 2021,
     "seasonName": "Infinite Recharge",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018249/FRC2020_zxa0xw.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -46,6 +51,7 @@
   {
     "year": 2020,
     "seasonName": "Infinite Recharge",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018249/FRC2020_zxa0xw.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -54,6 +60,7 @@
   {
     "year": 2019,
     "seasonName": "Destination: Deep Space",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018248/FRC2019_bcr1uw.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah",
@@ -63,6 +70,7 @@
   {
     "year": 2018,
     "seasonName": "FIRST Power Up",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018247/FRC2018_xad0vx.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -71,6 +79,7 @@
   {
     "year": 2017,
     "seasonName": "FIRST SteamWorks",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018247/FRC2017_lkmbql.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -79,6 +88,7 @@
   {
     "year": 2016,
     "seasonName": "FIRST Stronghold",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018246/FRC2016_vhkswi.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -87,6 +97,7 @@
   {
     "year": 2015,
     "seasonName": "Recycle Rush",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018245/FRC2015_h8iulh.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -95,6 +106,7 @@
   {
     "year": 2014,
     "seasonName": "Aerial Assist",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018244/FRC2014_pkcd5u.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -103,6 +115,7 @@
   {
     "year": 2013,
     "seasonName": "Ultimate Ascent",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018244/FRC2013_gb4khp.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -111,6 +124,7 @@
   {
     "year": 2012,
     "seasonName": "Rebound Rumble",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771019122/FRC2012_qo03dk.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -119,6 +133,7 @@
   {
     "year": 2011,
     "seasonName": "Logo Motion",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018242/FRC2011_uauicb.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -127,6 +142,7 @@
   {
     "year": 2010,
     "seasonName": "Breakaway",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018242/FRC2010_vedpli.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -135,6 +151,7 @@
   {
     "year": 2009,
     "seasonName": "Lunacy",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018242/FRC2009_ppdpzk.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -143,6 +160,7 @@
   {
     "year": 2008,
     "seasonName": "FIRST Overdrive",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018241/FRC2008_lrpun7.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -151,6 +169,7 @@
   {
     "year": 2007,
     "seasonName": "Rack 'N' Roll",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018240/FRC2007_hnaled.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -159,6 +178,7 @@
   {
     "year": 2006,
     "seasonName": "Aim High",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018240/FRC2006_ytdsn1.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -167,6 +187,7 @@
   {
     "year": 2005,
     "seasonName": "Triple Play",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018239/FRC2005_lkn6e1.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -175,6 +196,7 @@
   {
     "year": 2004,
     "seasonName": "FIRST Frenzy",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018239/FRC2004_il0i2w.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"
@@ -183,6 +205,7 @@
   {
     "year": 2003,
     "seasonName": "Stack Attack",
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018238/FRC2003_zwr0ke.webp",
     "robot": {
       "name": "Wow",
       "desc": "Woah"

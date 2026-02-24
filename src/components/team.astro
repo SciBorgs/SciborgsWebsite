@@ -1,10 +1,12 @@
 ---
 import Socials from "../components/socials.astro";
+import { team_desc } from "../../public/info.json";
 ---
 
 <div class="container">
-  <img class="logo" src="/sciborgs.webp" />
-  <h1 class="header">FRC Team 1155</h1>
+  <img src="/sciborgs.webp" />
+  <h1>FRC Team 1155</h1>
+  <p>{team_desc}</p>
   <Socials />
 </div>
 
@@ -20,19 +22,26 @@ import Socials from "../components/socials.astro";
       rgb(163 133 77 / 100%) 0%,
       rgb(17 24 39 / 100%) 100%
     );
+
+    img {
+      display: block;
+      width: 20rem;
+      height: auto;
+      animation: appear 1.5s ease forwards;
+    }
+
+    h1,
+    p {
+      font-size: var(--text-2xl);
+      text-align: center;
+    }
+
+    p {
+      font-size: var(--text-xs);
+      width: 80%;
+    }
   }
 
-  .logo {
-    display: block;
-    width: 20rem;
-    height: auto;
-    animation: appear 1.5s ease forwards;
-  }
-
-  .header {
-    font-size: var(--text-2xl);
-    text-align: center;
-  }
   @keyframes appear {
     from {
       opacity: 0;
@@ -46,13 +55,15 @@ import Socials from "../components/socials.astro";
   }
 
   @media (width >= 48rem) {
-    .logo {
-      width: 50rem;
-    }
+    .container {
+      img {
+        width: 50rem;
+      }
 
-    .header {
-      font-size: var(--text-3xl);
-      text-align: left;
+      h1 {
+        font-size: var(--text-3xl);
+        text-align: left;
+      }
     }
   }
 </style>
