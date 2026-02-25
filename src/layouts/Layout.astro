@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import Header from "../components/header.astro";
 import "../styles/_base.scss";
 ---
@@ -27,33 +26,27 @@ import "../styles/_base.scss";
     <slot transition:name="root" transition:animate="fade" />
   </body>
 
-  <ClientRouter />
-
   <script is:inline>
     function appear() {
+      const navBar = document.getElementById("navBar");
       const isMobile = window.innerWidth <= 768;
-      if (!isMobile) {
-        navBar.classList.add("activeMobile");
-      }
-
-      if (window.location.pathname != "/") return;
-      if (document.body.scrollTop > 100) {
+      console.log(window.location.pathname != "/");
+      if (!isMobile || window.location.pathname != "/") {
         navBar.classList.add("activeMobile");
       } else {
-        navBar.classList.remove("activeMobile");
+        if (document.body.scrollTop > 100) {
+          navBar.classList.add("activeMobile");
+        } else {
+          navBar.classList.remove("activeMobile");
+        }
       }
     }
 
-    function checkAppear() {
-      const navBar = document.getElementById("navBar");
-      if (window.location.pathname != "/") {
-        navBar.classList.add("activeMobile");
-        return;
-      }
-    }
+    appear();
 
+    window.addEventListener("resize", appear);
     document.body.addEventListener("scroll", appear);
-    document.addEventListener("astro:page-load", checkAppear);
+    document.addEventListener("astro:after-swap", appear);
 
     document.addEventListener("pointerdown", (element) => {
       const selected = element.target.closest("[data-tap]");

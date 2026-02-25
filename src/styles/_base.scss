@@ -14,6 +14,7 @@
   --text-8xl: 6rem;
   --text-9xl: 8rem;
   --color-bg: #111827;
+  --inner-bg: #1f2937;
   --color-yellow: #a3854d;
   --color-sciborgs: #fddd06;
   --white-but-not: #d6d3d1; /* text-stone-300 */
@@ -33,7 +34,8 @@
   box-sizing: inherit;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -52,26 +54,6 @@ body {
   background-color: var(--color-bg);
   height: 100%;
 }
-
-// html, body {
-//   height: 100%;
-// }
-
-// html {
-//   box-sizing: border-box;
-//   overflow: hidden;
-// }
-
-// body {
-//   overflow-y: auto;
-//   overscroll-behavior: none;
-//   margin: 0;
-//   font-family: var(--font-comfortaa), sans-serif;
-//   font-weight: 400;
-//   color: var(--white-but-not);
-//   background-color: var(--color-bg);
-//   height: 100%;
-// }
 
 .handleNav {
   position: sticky;
@@ -152,8 +134,8 @@ li {
 }
 
 @media (width >= 48rem) {
-  html,
-  body {
-    overscroll-behavior: none;
+  .smHeader {
+    font-size: var(--text-xl);
+    margin-block: 0.5rem;
   }
 }

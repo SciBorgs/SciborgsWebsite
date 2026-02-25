@@ -44,10 +44,7 @@ const lowestYear = Seasons[0].year;
     </div>
     <div id="seasonNav" class="safeView">
       <div class="infoContainer">
-        <div>
-          <h1>{selSeason.seasonName}</h1>
-          <img class="FirstLogo" src={selSeason.src} />
-        </div>
+        <img class="FIRSTLogo" src={selSeason.src} />
         <div class="arrowContainer">
           {
             foundYear != highestYear ? (
@@ -138,11 +135,13 @@ const lowestYear = Seasons[0].year;
     transition: opacity 650ms ease;
 
     p {
+      filter: drop-shadow(3px 3px 3px rgba(255, 255, 255, 0.03));
+      font-size: var(--text-lg);
       padding: 0.5rem;
-      text-align: left;
-      background-color: var(--color-green);
+      text-align: center;
+      background-color: var(--inner-bg);
       border-radius: 0.25rem;
-      margin-block: 0.25rem;
+      margin-block: 0.35rem;
     }
   }
 
@@ -191,7 +190,8 @@ const lowestYear = Seasons[0].year;
       width: 40%;
       height: 100%;
       border-radius: 0rem 1.5rem 1.5rem 0rem;
-      background-color: var(--color-green);
+      background-color: var(--inner-bg);
+      filter: drop-shadow(3px 3px 5px rgb(0 0 0));
       padding: 5rem 2rem;
       justify-content: center;
       gap: 1rem;
@@ -204,10 +204,12 @@ const lowestYear = Seasons[0].year;
       height: 50%;
     }
 
-    .FirstLogo {
-      flex-grow: 1;
-      width: 50%;
-      height: auto;
+    .FIRSTLogo {
+      filter: drop-shadow(3px 3px 5px rgba(214, 211, 209, 0.1));
+      width: fit-content;
+      height: fit-content;
+      max-height: 14rem;
+      max-width: 24rem;
     }
 
     .arrowContainer {
