@@ -3,13 +3,9 @@ import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 import sponsors from "../../public/sponsors.json";
 
-const emails = [
-  "firstinitiallastname@example.com",
-  "firstinitiallastname@example.com",
-];
+const emails = ["firstinitiallastname@example.com", "enniow@nycstudents.net"];
 
-const types = ["0", "1", "2", "3", "4"];
-const typeNames = ["Byte", "Kilobyte", "Megabyte", "Gigabyte", "Terabyte"];
+const typeNames = ["BYTE", "KILOBYTE", "MEGABYTE", "GIGABYTE", "TERABYTE"];
 const colors = [
   "--color-orange",
   "--color-brown",
@@ -18,11 +14,15 @@ const colors = [
   "--color-green",
 ];
 
-const sponsorGroups = types.map((type, index) => ({
-  id: type as unknown as number,
-  name: typeNames[index],
-  sponsors: sponsors.filter((sponsor) => sponsor.type === type),
-}));
+const sponsorGroups = typeNames
+  .map((name, i) => ({
+    id: i,
+    name,
+    color: colors[i],
+    sponsors: sponsors.filter((s) => s.type === String(i)),
+  }))
+  .filter((g) => g.sponsors.length > 0)
+  .reverse();
 ---
 
 <Layout>
@@ -39,14 +39,14 @@ const sponsorGroups = types.map((type, index) => ({
         vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra
         inceptos himenaeos.
       </p>
-      <h3 class="smHeader" style="text-align: center;">Consider donating!</h3>
+      <h3 class="smHeader" style="text-align:center;">Consider donating!</h3>
       <div class="emailContainer">
         <div id="toggleEmails">
           <Icon id="emailSelector" name="mdi:menu-right" />
           <p>Show Emails</p>
         </div>
         <div id="emailsContainer">
-          <div style="padding: 0.5rem;">
+          <div style="padding:0.5rem;">
             <h3 class="smHeader">Sciborgs Contact</h3>
             <p>{emails[0]}</p>
             <h3 class="smHeader">Sponsorships Lead</h3>
@@ -58,32 +58,34 @@ const sponsorGroups = types.map((type, index) => ({
     </div>
   </div>
 
-  <!-- -->
   <div id="divider"></div>
 
   <div id="sponsorsContainer">
     <h1 class="header">Sponsors</h1>
     <div class="tiersContainer">
       {
-        sponsorGroups.map((group) =>
-          group.sponsors.length > 0 ? (
-            <div class="tierContainer">
-              <h1
-                class="tierHeader"
-                style={`background-color: var(${colors[group.id]})`}
-              >
-                {group.name}
-              </h1>
+        sponsorGroups.map((group) => (
+          <>
+            <h1 class="tierHeader">{group.name}</h1>
+            <div
+              class="tierContainer"
+              style={`--tier-color:var(${group.color})`}
+            >
+              <svg
+                class="circuitSVG"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+              />
               <div class="sponsorContainer">
                 {group.sponsors.map((sponsor) => (
-                  <a href={sponsor.href}>
+                  <a href={sponsor.href} data-tap="1.1">
                     <Icon name={sponsor.src} class="sponsorLogo" />
                   </a>
                 ))}
               </div>
             </div>
-          ) : null,
-        )
+          </>
+        ))
       }
     </div>
   </div>
@@ -105,10 +107,6 @@ const sponsorGroups = types.map((type, index) => ({
     filter: drop-shadow(3px 3px 5px rgb(0 0 0));
   }
 
-  .donateInfo {
-    width: auto;
-  }
-
   .donateDesc {
     font-size: var(--text-sm);
   }
@@ -124,17 +122,13 @@ const sponsorGroups = types.map((type, index) => ({
   #toggleEmails {
     display: flex;
     align-items: center;
-    width: 100%;
-    height: 100%;
     padding: 0.5rem;
     cursor: pointer;
   }
 
   #emailSelector {
     transition: rotate 350ms ease;
-    rotate: 0deg;
   }
-
   #emailSelector.activeIcon {
     rotate: 90deg;
   }
@@ -145,7 +139,6 @@ const sponsorGroups = types.map((type, index) => ({
     transition: max-height 350ms ease-in-out;
     border-top: 1px solid white;
   }
-
   #emailsContainer.emailExpand {
     max-height: var(--max-height);
   }
@@ -153,6 +146,12 @@ const sponsorGroups = types.map((type, index) => ({
   .miniInfo {
     font-size: var(--text-xs);
     color: rgb(255 255 255 / 25%);
+  }
+
+  #divider {
+    width: 90%;
+    border-bottom: 2px var(--white-but-not) solid;
+    margin: 1.5rem auto;
   }
 
   #sponsorsContainer {
@@ -163,34 +162,42 @@ const sponsorGroups = types.map((type, index) => ({
 
   .tiersContainer {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     width: 100%;
-  }
-
-  #divider {
-    width: 90%;
-    border-bottom: 2px var(--white-but-not) solid;
-    margin-block: 1.5rem;
-    margin-inline: auto;
-  }
-
-  .tierContainer {
-    overflow: hidden;
-    width: 65%;
-    background-color: var(--color-bg);
-    border: 2px var(--white-but-not) solid;
-    border-radius: 1.5rem;
+    padding-bottom: 1rem;
   }
 
   .tierHeader {
     font-size: var(--text-3xl);
     text-align: center;
+    font-family: var(--font-changaone);
     color: white;
-    border-bottom: 2px var(--white-but-not) solid;
     margin-block: 0;
     padding-block: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tierContainer {
+    overflow: hidden;
+    width: 85%;
+    background-color: var(--color-bg);
+    border: 2px var(--white-but-not) solid;
+    border-radius: 1.5rem;
+    position: relative;
+    color: var(--tier-color);
+  }
+
+  .circuitSVG {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
   }
 
   .sponsorContainer {
@@ -199,10 +206,8 @@ const sponsorGroups = types.map((type, index) => ({
     justify-content: center;
     gap: 1rem;
     padding: 1.25rem 2rem;
-  }
-
-  .sponsor {
     position: relative;
+    z-index: 1;
   }
 
   .sponsorLogo {
@@ -211,7 +216,7 @@ const sponsorGroups = types.map((type, index) => ({
     color: var(--color-sciborgs);
     filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 50%));
   }
-
+  
   @media (width >= 48rem) {
     #donateContainer {
       display: grid;
@@ -221,64 +226,38 @@ const sponsorGroups = types.map((type, index) => ({
       grid-template-columns: auto 1fr;
       grid-template-rows: auto 1fr;
     }
-
     .donateHeader {
       grid-column: 1 / 3;
     }
-
     .donateInfo {
-      width: 32rem;
+      width: 100%;
     }
-
     .donateDesc {
       font-size: var(--text-lg);
-      grid-column: 2 / 3;
-    }
-
-    .emailContainer {
-      grid-column: 2 / 3;
     }
 
     .sponsorContainer {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      place-items: center center;
+      grid-template-columns: repeat(2, 1fr);
+      place-items: center;
     }
-
-    .sponsorHeader {
-      font-size: var(--text-7xl);
-      grid-column: 1 / 3;
-    }
-
-    .tiers {
-      grid-column: 1 / 2;
-    }
-
     .sponsorLogo {
       width: 16rem;
     }
+  }
 
-    @media (width >= 32rem) {
-      .sponsorContainer {
-        grid-template-columns: repeat(2, 1fr);
-      }
+  @media (width >= 64rem) {
+    .sponsorContainer {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
 
 <script is:inline>
-  let showEmail = false;
-
   const toggleEmails = document.getElementById("toggleEmails");
   const emailsContainer = document.getElementById("emailsContainer");
   const emailSelector = document.getElementById("emailSelector");
-
-  toggleEmails.addEventListener("click", () => {
-    showEmail = !showEmail;
-
-    emailsContainer.classList.toggle("emailExpand", showEmail);
-    emailSelector.classList.toggle("activeIcon", showEmail);
-  });
+  let showEmail = false;
 
   function setMaxEmail() {
     emailsContainer.style.setProperty(
@@ -286,7 +265,125 @@ const sponsorGroups = types.map((type, index) => ({
       `${emailsContainer.scrollHeight}px`,
     );
   }
-
   document.addEventListener("DOMContentLoaded", setMaxEmail);
   document.addEventListener("astro:page-load", setMaxEmail);
+
+  toggleEmails.addEventListener("click", () => {
+    showEmail = !showEmail;
+    emailsContainer.classList.toggle("emailExpand", showEmail);
+    emailSelector.classList.toggle("activeIcon", showEmail);
+  });
+
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  function seededRand(seed) {
+    let s = seed;
+    return () => {
+      s = (s * 1664525 + 1013904223) & 0xffffffff;
+      return (s >>> 0) / 0xffffffff;
+    };
+  }
+
+  function buildPaths(w, h, rand) {
+    const paths = [];
+    for (let i = 0; i < 16; i++) {
+      if (i < 8) {
+        const bx = (0.15 + rand() * 0.7) * w;
+        const sy = (0.08 + rand() * 0.84) * h;
+        const ey = (0.08 + rand() * 0.84) * h;
+        paths.push(
+          rand() > 0.5
+            ? `M0,${sy} H${bx} V${ey} H${w}`
+            : `M${w},${sy} H${bx} V${ey} H0`,
+        );
+      } else {
+        const by = (0.15 + rand() * 0.7) * h;
+        const sx = (0.08 + rand() * 0.84) * w;
+        const ex = (0.08 + rand() * 0.84) * w;
+        paths.push(
+          rand() > 0.5
+            ? `M${sx},0 V${by} H${ex} V${h}`
+            : `M${sx},${h} V${by} H${ex} V0`,
+        );
+      }
+    }
+    return paths;
+  }
+
+  function buildSVG(container) {
+    const svg = container.querySelector(".circuitSVG");
+    if (!svg) return;
+
+    const rect = container.getBoundingClientRect();
+    const w = container.offsetWidth;
+    const h = container.offsetHeight;
+
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    svg.innerHTML = "";
+
+    const containers = Array.from(document.querySelectorAll(".tierContainer"));
+    const rand = seededRand(containers.indexOf(container) * 7919 + 1234);
+    const paths = buildPaths(w, h, rand);
+
+    paths.forEach((d, i) => {
+      const base = document.createElementNS(SVG_NS, "path");
+      base.setAttribute("d", d);
+      base.setAttribute("fill", "none");
+      base.setAttribute("stroke", "currentColor");
+      base.setAttribute("stroke-width", "1.8");
+      base.setAttribute("stroke-linecap", "square");
+      base.setAttribute("stroke-linejoin", "miter");
+      base.setAttribute("opacity", "0.15");
+      svg.appendChild(base);
+
+      const pulse = document.createElementNS(SVG_NS, "path");
+      pulse.setAttribute("d", d);
+      pulse.setAttribute("fill", "none");
+      pulse.setAttribute("stroke", "currentColor");
+      pulse.setAttribute("stroke-width", "3.5");
+      pulse.setAttribute("stroke-linecap", "round");
+      pulse.setAttribute("opacity", "0");
+      svg.appendChild(pulse);
+
+      const len = pulse.getTotalLength();
+      const band = 55;
+      pulse.setAttribute("stroke-dasharray", `${band} ${len + band * 2}`);
+
+      const DURATION = 8000;
+      const IDLE_RATIO = 0.45;
+      pulse.animate(
+        [
+          { strokeDashoffset: `${band}`, opacity: 0, offset: 0 },
+          { strokeDashoffset: `${band}`, opacity: 0, offset: IDLE_RATIO },
+          {
+            strokeDashoffset: `${band}`,
+            opacity: 0.95,
+            offset: IDLE_RATIO + 0.01,
+          },
+          { strokeDashoffset: `${-len}`, opacity: 0.95, offset: 0.98 },
+          { strokeDashoffset: `${-len}`, opacity: 0, offset: 1 },
+        ],
+        {
+          duration: DURATION,
+          delay: -(i / paths.length) * DURATION,
+          iterations: Infinity,
+          easing: "linear",
+        },
+      );
+    });
+  }
+
+  const ro = new ResizeObserver(() =>
+    document.querySelectorAll(".tierContainer").forEach(buildSVG),
+  );
+
+  function setup() {
+    document.querySelectorAll(".tierContainer").forEach((c) => {
+      buildSVG(c);
+      ro.observe(c);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", setup);
+  document.addEventListener("astro:page-load", setup);
 </script>

@@ -5,6 +5,6 @@
   { "type": "3", "src": "sponsors/ESRG", "href": "https://www.energyresponsegroup.com/" },
   { "type": "4", "src": "sponsors/lastAnvil", "href": "https://lastanvil.com/"},
   { "type": "5", "src": "sponsors/NYCFIRST", "href": "https://www.nycfirst.org/" },
-  { "type": "0", "src": "sponsors/onlineMetals", "href": "https://www.onlinemetals.com/" },
-  { "type": "0", "src": "sponsors/optimum", "href": "https://www.optimum.net/" }
+  { "type": "4", "src": "sponsors/onlineMetals", "href": "https://www.onlinemetals.com/" },
+  { "type": "3", "src": "sponsors/optimum", "href": "https://www.optimum.net/" }
 ]

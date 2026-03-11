@@ -1,6 +1,6 @@
 ---
 import Seasons from "../../history.json";
-import SeasonLayout from "./seasonLayout.astro";
+import SeasonLayout from "../../layouts/seasonLayout.astro";
 
 export function getStaticPaths() {
   const validYears = Seasons.filter((season) => {

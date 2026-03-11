@@ -5,8 +5,8 @@ import { team_desc } from "../../public/info.json";
 
 <div class="container">
   <img src="/sciborgs.webp" />
-  <h1>FRC Team 1155</h1>
-  <p>{team_desc}</p>
+  <h1 class="teamHeader header">FRC Team 1155</h1>
+  <p class="teamDesc" set:html={team_desc} />
   <Socials />
 </div>
 
@@ -19,8 +19,8 @@ import { team_desc } from "../../public/info.json";
     padding: 0.5rem 1rem;
     background: linear-gradient(
       180deg,
-      rgb(163 133 77 / 100%) 0%,
-      rgb(17 24 39 / 100%) 100%
+      var(--color-header) 0%,
+      rgb(17 24 39 / 100%) 75%
     );
 
     img {
@@ -30,15 +30,19 @@ import { team_desc } from "../../public/info.json";
       animation: appear 1.5s ease forwards;
     }
 
-    h1,
-    p {
-      font-size: var(--text-2xl);
+    .teamHeader {
+      font-size: var(--text-3xl);
       text-align: center;
     }
 
-    p {
-      font-size: var(--text-xs);
-      width: 80%;
+    .teamDesc {
+      font-size: var(--text-lg);
+      text-align: center;
+    }
+
+    :global(.bxscilink) {
+      color: var(--color-sciborgs);
+      font-weight: 600;
     }
   }
 
@@ -54,16 +58,19 @@ import { team_desc } from "../../public/info.json";
     }
   }
 
-  @media (width >= 48rem) {
+  @media (min-width: 48rem) {
     .container {
       img {
         width: 50rem;
       }
+    }
 
-      h1 {
-        font-size: var(--text-3xl);
-        text-align: left;
-      }
+    .teamHeader {
+      font-size: var(--text-5xl) !important;
+    }
+
+    .teamDesc {
+      width: 50%;
     }
   }
 </style>

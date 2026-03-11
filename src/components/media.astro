@@ -3,43 +3,36 @@ import { YouTube } from "astro-embed";
 import { getLatestYoutubeVideo } from "../lib/youtube";
 
 const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
-
-const embedCode = `
-<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/REEL_ID/" data-instgrm-version="14"></blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-`;
 ---
 
 <div class="container">
-  <div class="inner">
-    <div class="mediaHeader">
-      <h1 class="header">Media</h1>
-      <p>Latest Content From Our Socials</p>
+  <div class="mediaHeader">
+    <h1 class="header">Media</h1>
+    <p>Latest Content From Our Socials</p>
+  </div>
+
+  <div class="socials">
+    <div class="socialContainer youtube">
+      <h2>YouTube</h2>
+      {
+        video ? (
+          <YouTube class="youtube" id={video.videoId} title={video.title} />
+        ) : (
+          <p>No video available</p>
+        )
+      }
     </div>
 
-    <div class="socials">
-      <div class="socialContainer">
-        <h2>YouTube</h2>
-        {
-          video ? (
-            <YouTube class="youtube" id={video.videoId} title={video.title} />
-          ) : (
-            <p>No video available</p>
-          )
-        }
-      </div>
-
-      <div class="socialContainer">
-        <h2>Instagram</h2>
-        <iframe
-          src="https://www.instagram.com/reel/DFi2rKrJVMp/embed"
-          id="instagram"
-          class="instagram-media"
-          scrolling="no"
-          allowtransparency="true"
-        >
-        </iframe>
-      </div>
+    <div class="socialContainer instagram">
+      <h2>Instagram</h2>
+      <iframe
+        src="https://www.instagram.com/reel/DFi2rKrJVMp/embed"
+        id="instagram"
+        class="instagram-media"
+        scrolling="no"
+        allowtransparency="true"
+      >
+      </iframe>
     </div>
   </div>
   <script async src="https://www.instagram.com/embed.js"></script>
@@ -48,6 +41,7 @@ const embedCode = `
 <style lang="scss">
   .container {
     width: 100%;
+    padding: 0.5rem 1rem;
   }
 
   .inner {
@@ -66,21 +60,18 @@ const embedCode = `
   }
 
   .socials {
-    display: grid;
-    justify-content: center;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 2rem;
-    grid-template-rows: auto 1fr;
   }
 
   .socialContainer {
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    gap: 1rem;
     width: 100%;
-    max-width: 24rem !important;
-    max-width: 720px;
+    gap: 1rem;
     padding: 1rem;
     background: var(--background);
     border: 1px solid var(--white-but-not);
@@ -90,18 +81,29 @@ const embedCode = `
     h2 {
       margin-block: 0;
     }
+
+    &.instagram {
+      max-width: 24rem;
+      height: auto;
+    }
   }
 
   .youtube {
-    width: 100%;
     border-radius: 0.75rem;
-    aspect-ratio: 16 / 9;
   }
 
-  @media (width >= 48rem) {
+  @media (width >= 56rem) {
     .socials {
       display: flex;
+      flex-direction: row;
+      align-items: flex-start;
       justify-content: center;
+    }
+
+    .socialContainer {
+      &.youtube {
+        max-width: 720px;
+      }
     }
   }
 </style>

@@ -6,7 +6,8 @@
     "robot": {
       "name": "Wow",
       "desc": "Woah",
-      "src": "https://i.imgur.com/Yk304Rm.jpeg"
+      "src": "https://i.imgur.com/Yk304Rm.jpeg",
+      "github": "https://github.com/SciBorgs/Reefscape-2025"
     }
   },
   {
@@ -16,7 +17,8 @@
     "robot": {
       "name": "Wow",
       "desc": "Woah",
-      "src": "https://i.imgur.com/arip0Be.jpeg"
+      "src": "https://i.imgur.com/arip0Be.jpeg",
+      "github": "https://github.com/SciBorgs/Crescendo-2024"
     }
   },
   {
@@ -26,7 +28,8 @@
     "robot": {
       "name": "Wow",
       "desc": "Woah",
-      "src": "https://i.imgur.com/vvmBpFL.jpeg"
+      "src": "https://i.imgur.com/vvmBpFL.jpeg",
+      "github": "https://github.com/SciBorgs/ChargedUp-2023"
     }
   },
   {
@@ -36,7 +39,8 @@
     "robot": {
       "name": "Wow",
       "desc": "Woah",
-      "src": "https://i.imgur.com/lRVPvJ1.jpeg"
+      "src": "https://i.imgur.com/lRVPvJ1.jpeg",
+      "github": "https://github.com/SciBorgs/RapidReact-2022"
     }
   },
   {
@@ -54,7 +58,8 @@
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018249/FRC2020_zxa0xw.webp",
     "robot": {
       "name": "Wow",
-      "desc": "Woah"
+      "desc": "Woah",
+      "github": "https://github.com/SciBorgs/InfiniteRecharge-2020"
     }
   },
   {
@@ -64,7 +69,8 @@
     "robot": {
       "name": "Wow",
       "desc": "Woah",
-      "src": "https://i.imgur.com/1L5lO8K.jpeg"
+      "src": "https://i.imgur.com/1L5lO8K.jpeg",
+      "github": "https://github.com/SciBorgs/DeepSpace-2019"
     }
   },
   {
@@ -73,7 +79,8 @@
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018247/FRC2018_xad0vx.webp",
     "robot": {
       "name": "Wow",
-      "desc": "Woah"
+      "desc": "Woah",
+      "github": "https://github.com/SciBorgs/PowerUp-2018"
     }
   },
   {
@@ -82,7 +89,8 @@
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018247/FRC2017_lkmbql.webp",
     "robot": {
       "name": "Wow",
-      "desc": "Woah"
+      "desc": "Woah",
+      "github": "https://github.com/SciBorgs/Steamworks-2017"
     }
   },
   {
@@ -91,7 +99,8 @@
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018246/FRC2016_vhkswi.webp",
     "robot": {
       "name": "Wow",
-      "desc": "Woah"
+      "desc": "Woah",
+      "github": "https://github.com/SciBorgs/Stronghold-2016"
     }
   },
   {
@@ -100,7 +109,8 @@
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018245/FRC2015_h8iulh.webp",
     "robot": {
       "name": "Wow",
-      "desc": "Woah"
+      "desc": "Woah",
+      "github": "https://github.com/SciBorgs/RecycleRush-2015"
     }
   },
   {
@@ -109,7 +119,8 @@
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1771018244/FRC2014_pkcd5u.webp",
     "robot": {
       "name": "Wow",
-      "desc": "Woah"
+      "desc": "Woah",
+      "github": "https://github.com/SciBorgs/AerialAssist-2014"
     }
   },
   {
