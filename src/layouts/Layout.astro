@@ -29,24 +29,13 @@ import "../styles/_base.scss";
   <script is:inline>
     function appear() {
       const navBar = document.getElementById("navBar");
-      const isMobile = window.innerWidth <= 768;
-      console.log(window.location.pathname != "/");
-      if (!isMobile || window.location.pathname != "/") {
-        navBar.classList.add("activeMobile");
-      } else {
-        if (document.body.scrollTop > 100) {
-          navBar.classList.add("activeMobile");
-        } else {
-          navBar.classList.remove("activeMobile");
-        }
-      }
+      navBar.classList.add("activeMobile");
     }
 
     appear();
 
     window.addEventListener("resize", appear);
     document.body.addEventListener("scroll", appear);
-    document.addEventListener("astro:after-swap", appear);
 
     document.addEventListener("pointerdown", (element) => {
       const selected = element.target.closest("[data-tap]");

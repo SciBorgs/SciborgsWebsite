@@ -16,7 +16,7 @@ const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
       <h2>YouTube</h2>
       {
         video ? (
-          <YouTube class="youtube" id={video.videoId} title={video.title} />
+          <YouTube class="youtube" id={video.videoId} title={video.title} posterQuality="max" />
         ) : (
           <p>No video available</p>
         )
@@ -70,8 +70,8 @@ const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    width: 100%;
     gap: 1rem;
+    width: 100%;
     padding: 1rem;
     background: var(--background);
     border: 1px solid var(--white-but-not);
@@ -96,8 +96,8 @@ const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
     .socials {
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
       justify-content: center;
+      align-items: flex-start;
     }
 
     .socialContainer {

@@ -31,7 +31,9 @@ import { team_desc } from "../../public/info.json";
     }
 
     .teamHeader {
+      font-family: var(--font-orbitron);
       font-size: var(--text-3xl);
+      font-weight: 900;
       text-align: center;
     }
 
@@ -41,8 +43,8 @@ import { team_desc } from "../../public/info.json";
     }
 
     :global(.bxscilink) {
-      color: var(--color-sciborgs);
       font-weight: 600;
+      color: var(--color-sciborgs);
     }
   }
 
@@ -58,7 +60,7 @@ import { team_desc } from "../../public/info.json";
     }
   }
 
-  @media (min-width: 48rem) {
+  @media (width >= 48rem) {
     .container {
       img {
         width: 50rem;

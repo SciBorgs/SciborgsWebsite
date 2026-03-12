@@ -19,7 +19,7 @@
   --color-bxsci: #0f7763;
   --color-yellow: #a3854d;
   --color-sciborgs: #fddd06;
-  --white-but-not: #d6d3d1; /* text-stone-300 */
+  --white-but-not: white; /* text-stone-300 */
   --color-orange: #f19a26;
   --color-brown: #8b6244;
   --color-gray: #b2b2b2;
@@ -27,23 +27,18 @@
   --color-green: #2d995d;
   --font-sen: "Sen", serif;
   --font-gcmilan: "GCMilan", serif;
-  --font-changaone: "ChangaOne", serif;
-  --font-courier: "Courier New", monospace;
+  --font-changaone: "Changa One", serif;
+  --font-courier: "Courier New", serif;
+  --font-orbitron: 'Orbitron', serif;
+  --font-sen: 'Sen', serif;
 }
 
-@font-face {
-  font-family: Sen;
-  src: url("/fonts/Sen.ttf") format("truetype");
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Sen:wght@400..800&display=swap');
 
 @font-face {
   font-family: GCMilan;
   src: url("/fonts/GCMilan.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: ChangaOne;
-  src: url("/fonts/ChangaOne.ttf") format("truetype");
 }
 
 *,
@@ -58,19 +53,19 @@ body {
 }
 
 html {
-  box-sizing: border-box;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 body {
-  overflow-y: auto;
-  overscroll-behavior: none;
+  height: 100%;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-orbitron);
   font-weight: 400;
   color: var(--white-but-not);
   background-color: var(--color-bg);
-  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: none;
 }
 
 .handleNav {
@@ -122,19 +117,27 @@ li {
 }
 
 .header {
+  font-family: var(--font-changaone);
   font-size: var(--text-5xl);
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.125rem;
   filter: drop-shadow(3px 3px 5px rgb(0 0 0));
   margin-block: 0.75rem;
 }
 
 .smHeader {
-  font-size: var(--text-2xl);
-  margin-block: 0.65rem;
+  font-family: var(--font-courier);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-block: 0.5rem;
 }
 
 .topicHeader {
+  font-family: var(--font-changaone);
   font-size: var(--text-3xl);
+  text-transform: uppercase;
   margin-block: 0.5rem;
 }
 

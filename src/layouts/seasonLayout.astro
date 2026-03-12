@@ -132,10 +132,10 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
   }
 
   #seasonsContainer {
-    max-height: 0;
-    transition: max-height 650ms ease;
     overflow: hidden;
     min-height: 0;
+    max-height: 0;
+    transition: max-height 650ms ease;
   }
 
   #seasonsContainer.expand {
@@ -143,7 +143,7 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
   }
 
   #seasonsContainer::-webkit-scrollbar {
-    display: none;
+    width: 0;
   }
 
   .seasonHeader {
@@ -153,15 +153,15 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
     transition: opacity 650ms ease;
 
     p {
-      font-size: var(--text-lg);
       padding: 0.5rem;
+      font-size: var(--text-lg);
       text-align: center;
       border-radius: 0.25rem;
       margin-block: 0.35rem;
     }
 
     &.activeSeason {
-      background-color: rgba(253, 221, 6, 0.45);
+      background-color: rgb(253 221 6 / 45%);
       border: 1px solid var(--color-sciborgs);
       border-radius: 0.5rem;
 
@@ -203,8 +203,8 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
     .container {
       display: flex;
       flex-direction: row;
-      padding: 0;
       height: 100vh;
+      padding: 0;
     }
 
     #mobileBar {
@@ -216,26 +216,26 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
       flex-direction: column;
       width: 24rem;
       height: 100%;
-      border-radius: 0rem 1.5rem 1.5rem 0rem;
-      background-color: var(--inner-bg);
-      filter: drop-shadow(3px 3px 5px rgb(0 0 0));
       padding: 1rem;
+      background-color: var(--inner-bg);
+      border-radius: 0 1.5rem 1.5rem 0;
+      filter: drop-shadow(3px 3px 5px rgb(0 0 0));
     }
 
     .seasonInfo {
       position: relative;
       width: 100%;
-      background-image: linear-gradient(90deg, #0f172a, #1e293b);
-      border: 1px solid rgb(43, 43, 43);
-      border-radius: 1rem;
       margin-bottom: 1rem;
+      background-image: linear-gradient(90deg, #0f172a, #1e293b);
+      border: 1px solid rgb(43 43 43);
+      border-radius: 1rem;
     }
 
     .seasonText {
-      font-family: var(--font-courier);
       position: absolute;
       bottom: 0.5rem;
       left: 0.75rem;
+      font-family: var(--font-courier);
 
       h1 {
         font-size: var(--text-3xl);
@@ -244,10 +244,10 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
 
       p {
         font-size: var(--text-sm);
-        color: var(--color-white-but-not);
         font-weight: 500;
-        letter-spacing: 0.08em;
         text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-white-but-not);
       }
     }
 
@@ -258,9 +258,7 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
     }
 
     .seasonLogoWrapper::after {
-      content: "";
       position: absolute;
-      inset: 0;
       background: repeating-linear-gradient(
         to bottom,
         transparent,
@@ -268,32 +266,34 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
         rgb(0 0 0 / 15%) 2px,
         rgb(0 0 0 / 15%) 4px
       );
+      content: "";
+      inset: 0;
       pointer-events: none;
     }
 
     .seasonLogo {
       width: 100%;
       height: 100%;
+      padding: 1.5rem;
+      filter: drop-shadow(3px 3px 5px rgb(255 255 255 / 10%)) !important;
       object-fit: contain;
       object-position: center center;
-      padding: 1.5rem;
-      filter: drop-shadow(3px 3px 5px rgba(255, 255, 255, 0.1)) !important;
     }
 
     .pickerContainer {
-      width: 100%;
       display: grid;
+      width: 100%;
       grid-template-columns: repeat(2, 1fr);
       justify-items: center;
     }
 
     .seasonPicker {
       display: flex;
-      justify-items: center;
-      background-image: linear-gradient(90deg, #0f172a, #1e293b);
       padding: 0.25rem 0.75rem;
-      border-radius: 0.25rem;
       font-family: var(--font-courier);
+      background-image: linear-gradient(90deg, #0f172a, #1e293b);
+      border-radius: 0.25rem;
+      justify-items: center;
 
       svg {
         display: flex;
@@ -312,6 +312,8 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
         black calc(100% - 0.25rem),
         transparent
       );
+      overflow-y: scroll;
+      overscroll-behavior: none;
     }
 
     .seasonHeader {
@@ -323,12 +325,12 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
       margin-block: 0;
 
       p {
-        filter: none;
         background-color: transparent;
+        filter: none;
       }
 
       &.activeSeason {
-        background-color: rgba(253, 221, 6, 0.45);
+        background-color: rgb(253 221 6 / 45%);
         border: 1px solid var(--color-sciborgs);
         border-radius: 0.5rem;
 
@@ -347,10 +349,6 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
       flex-direction: column;
       justify-content: space-between;
       height: 50%;
-    }
-
-    #navBar::-webkit-scrollbar {
-      display: none;
     }
   }
 </style>
