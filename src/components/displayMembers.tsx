@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import members from "../members.json";
 import styles from "../styles/_members.module.scss";
 import type { ImageParams } from "../types.ts";
-import MoveImage from "./moveImage.tsx";
 
 export default function DisplayMembers() {
   const groups: Record<number, [number, number]> = {
@@ -83,15 +82,12 @@ export default function DisplayMembers() {
               onClick={() => setCurr(i)}
             >
               <div className={styles.gridContainer}>
-                {ifActive ? (
-                  <MoveImage
-                    src={image.src}
-                    className={styles.image}
-                    onClick={() => setCurr(i)}
-                  />
-                ) : (
-                  <img src={image.src} onClick={() => setCurr(i)} />
-                )}
+                <div className={styles.innerImage} onClick={() => setCurr(i)}>
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className={styles.pos} />
+                  ))}
+                  <img className={styles.dragImage} src={image.src} />
+                </div>
 
                 <div
                   id={styles.textContainer}

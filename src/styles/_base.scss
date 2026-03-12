@@ -29,12 +29,12 @@
   --font-gcmilan: "GCMilan", serif;
   --font-changaone: "Changa One", serif;
   --font-courier: "Courier New", serif;
-  --font-orbitron: 'Orbitron', serif;
-  --font-sen: 'Sen', serif;
+  --font-orbitron: "Orbitron", serif;
+  --font-sen: "Sen", serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Sen:wght@400..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Sen:wght@400..800&display=swap");
 
 @font-face {
   font-family: GCMilan;
@@ -143,6 +143,11 @@ li {
 
 .dropShadow {
   filter: drop-shadow(3px 3px 5px #000);
+}
+
+.bxscilink {
+  font-weight: 600;
+  color: var(--color-sciborgs);
 }
 
 [data-tap].tap {

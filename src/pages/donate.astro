@@ -1,34 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
-import sponsors from "../../public/sponsors.json";
+import SponsorView from "../components/sponsorView.astro";
 
 const emails = ["firstinitiallastname@example.com", "enniow@nycstudents.net"];
-
-const typeNames = ["BYTE", "KILOBYTE", "MEGABYTE", "GIGABYTE", "TERABYTE"];
-const colors = [
-  "--color-orange",
-  "--color-brown",
-  "--color-gray",
-  "--color-lime",
-  "--color-green",
-];
-
-const sponsorGroups = typeNames
-  .map((name, i) => ({
-    id: i,
-    name,
-    color: colors[i],
-    sponsors: sponsors.filter((s) => s.type === String(i)),
-  }))
-  .filter((g) => g.sponsors.length > 0)
-  .reverse();
 ---
 
 <Layout>
   <div id="donateContainer">
     <h1 class="donateHeader header">Donate</h1>
-    <img class="sponsorTiers" src="/sponsorTiers.png" />
+    <img class="donateTiers" src="/sponsorTiers.png" />
     <div class="donateInfo">
       <p class="donateDesc">
         Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
@@ -71,35 +52,7 @@ const sponsorGroups = typeNames
 
   <div id="divider"></div>
 
-  <div id="sponsorsContainer">
-    <h1 class="header">Sponsors</h1>
-    <div class="tiersContainer">
-      {
-        sponsorGroups.map((group) => (
-          <>
-            <h1 class="tierHeader">{group.name}</h1>
-            <div
-              class="tierContainer"
-              style={`--tier-color:var(${group.color})`}
-            >
-              <svg
-                class="circuitSVG"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-              />
-              <div class="sponsorContainer">
-                {group.sponsors.map((sponsor) => (
-                  <a href={sponsor.href} data-tap="1.1">
-                    <Icon name={sponsor.src} class="sponsorLogo" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </>
-        ))
-      }
-    </div>
-  </div>
+  <SponsorView />
 </Layout>
 
 <style>
@@ -110,12 +63,12 @@ const sponsorGroups = typeNames
     padding-top: 5rem;
   }
 
-  .sponsorTiers {
+  .donateTiers {
     width: 100%;
     height: 100%;
     border-radius: 0.25rem;
     filter: drop-shadow(3px 3px 5px rgb(0 0 0));
-    object-fit:contain;
+    object-fit: contain;
   }
 
   .donateDesc {
@@ -207,69 +160,6 @@ const sponsorGroups = typeNames
     border-bottom: 2px var(--white-but-not) solid;
   }
 
-  #sponsorsContainer {
-    position: relative;
-    overflow: hidden visible;
-    padding: 0.5rem 1rem;
-  }
-
-  .tiersContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
-
-  .tierHeader {
-    position: relative;
-    z-index: 1;
-    font-family: var(--font-changaone);
-    font-size: var(--text-4xl);
-    text-align: center;
-    letter-spacing: 0.125rem;
-    color: white;
-    margin-block: 0;
-  }
-
-  .tierContainer {
-    position: relative;
-    overflow: hidden;
-    width: 85%;
-    color: var(--tier-color);
-    background-color: var(--color-bg);
-    border: 2px var(--tier-color) solid;
-    border-radius: 1.5rem;
-  }
-
-  .circuitSVG {
-    position: absolute;
-    z-index: 0;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .sponsorContainer {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1.25rem 2rem;
-  }
-
-  .sponsorLogo {
-    width: 100%;
-    height: auto;
-    color: var(--color-sciborgs);
-    filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 50%));
-  }
-
   @media (width >= 48rem) {
     #donateContainer {
       display: grid;
@@ -290,15 +180,6 @@ const sponsorGroups = typeNames
 
     .donateDesc {
       font-size: var(--text-lg);
-    }
-
-    .sponsorContainer {
-      flex-direction: row;
-      place-items: center;
-    }
-
-    .sponsorLogo {
-      width: 16rem;
     }
   }
 </style>
@@ -323,118 +204,4 @@ const sponsorGroups = typeNames
     emailsContainer.classList.toggle("emailExpand", showEmail);
     emailSelector.classList.toggle("activeIcon", showEmail);
   });
-
-  const SVG_NS = "http://www.w3.org/2000/svg";
-
-  function seededRand(seed) {
-    let s = seed;
-    return () => {
-      s = (s * 1664525 + 1013904223) & 0xffffffff;
-      return (s >>> 0) / 0xffffffff;
-    };
-  }
-
-  function buildPaths(w, h, rand) {
-    const paths = [];
-    const COUNT = 10;
-    for (let i = 0; i < COUNT; i++) {
-      if (i < COUNT / 2) {
-        const bx = (0.1 + rand() * 0.8) * w;
-        const sy = (i / (COUNT / 2)) * h;
-        const ey = ((i + 0.5) / (COUNT / 2)) * h;
-        paths.push(
-          rand() > 0.5
-            ? `M0,${sy} H${bx} V${ey} H${w}`
-            : `M${w},${sy} H${bx} V${ey} H0`,
-        );
-      } else {
-        const j = i - COUNT / 2;
-        const by = (0.1 + rand() * 0.8) * h;
-        const sx = (j / (COUNT / 2)) * w;
-        const ex = ((j + 0.5) / (COUNT / 2)) * w;
-        paths.push(
-          rand() > 0.5
-            ? `M${sx},0 V${by} H${ex} V${h}`
-            : `M${sx},${h} V${by} H${ex} V0`,
-        );
-      }
-    }
-    return paths;
-  }
-
-  function buildSVG(container) {
-    const svg = container.querySelector(".circuitSVG");
-
-    const rect = container.getBoundingClientRect();
-    const w = container.scrollWidth;
-    const h = container.scrollHeight;
-
-    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
-    svg.innerHTML = "";
-
-    const containers = Array.from(document.querySelectorAll(".tierContainer"));
-    const rand = seededRand(containers.indexOf(container) * 7919 + 1234);
-    const paths = buildPaths(w, h, rand);
-
-    paths.forEach((d, i) => {
-      const base = document.createElementNS(SVG_NS, "path");
-      base.setAttribute("d", d);
-      base.setAttribute("fill", "none");
-      base.setAttribute("stroke", "currentColor");
-      base.setAttribute("stroke-width", "1.8");
-      base.setAttribute("stroke-linecap", "square");
-      base.setAttribute("stroke-linejoin", "miter");
-      base.setAttribute("opacity", "0.15");
-      svg.appendChild(base);
-
-      const pulse = document.createElementNS(SVG_NS, "path");
-      pulse.setAttribute("d", d);
-      pulse.setAttribute("fill", "none");
-      pulse.setAttribute("stroke", "currentColor");
-      pulse.setAttribute("stroke-width", "3.5");
-      pulse.setAttribute("stroke-linecap", "round");
-      pulse.setAttribute("opacity", "0");
-      svg.appendChild(pulse);
-
-      const len = pulse.getTotalLength();
-      const band = 55;
-      pulse.setAttribute("stroke-dasharray", `${band} ${len + band * 2}`);
-
-      const DURATION = 8000;
-      const IDLE_RATIO = 0.45;
-      pulse.animate(
-        [
-          { strokeDashoffset: `${band}`, opacity: 0, offset: 0 },
-          { strokeDashoffset: `${band}`, opacity: 0, offset: IDLE_RATIO },
-          {
-            strokeDashoffset: `${band}`,
-            opacity: 0.95,
-            offset: IDLE_RATIO + 0.01,
-          },
-          { strokeDashoffset: `${-len}`, opacity: 0.95, offset: 0.98 },
-          { strokeDashoffset: `${-len}`, opacity: 0, offset: 1 },
-        ],
-        {
-          duration: DURATION,
-          delay: -(i / paths.length) * DURATION,
-          iterations: Infinity,
-          easing: "linear",
-        },
-      );
-    });
-  }
-
-  const ro = new ResizeObserver(() =>
-    document.querySelectorAll(".tierContainer").forEach(buildSVG),
-  );
-
-  function setup() {
-    document.querySelectorAll(".tierContainer").forEach((c) => {
-      buildSVG(c);
-      ro.observe(c);
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", setup);
-  document.addEventListener("astro:page-load", setup);
 </script>
