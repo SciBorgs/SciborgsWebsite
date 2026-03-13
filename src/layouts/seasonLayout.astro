@@ -1,8 +1,8 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import { Icon } from "astro-icon/components";
 import History from "../history.json";
 import Layout from "./Layout.astro";
+import { ClientRouter } from "astro:transitions";
 
 const { year } = Astro.params;
 const seasons = History.sort((a, b) => b.year - a.year);
@@ -74,7 +74,7 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
       </div>
 
       <div class="divider"></div>
-      <div id="seasonsContainer">
+      <div id="seasonsContainerDesktop">
         {
           seasons.map((season, i) => {
             return (
@@ -301,7 +301,7 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
       }
     }
 
-    #seasonsContainer {
+    #seasonsContainerDesktop {
       flex-grow: 1;
       max-height: none;
       padding: 0.25rem;
@@ -354,6 +354,28 @@ const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
 </style>
 
 <script is:inline>
+  function saveScroll() {
+    const container = document.getElementById("seasonsContainerDesktop");
+    container.addEventListener(
+      "scroll",
+      (e) => {
+        sessionStorage.setItem("scrollPosition", e.target.scrollTop.toString());
+      },
+      { passive: true },
+    );
+  }
+
+  function reloadScroll() {
+    const container = document.getElementById("seasonsContainerDesktop");
+    const scrollPosition = sessionStorage.getItem("scrollPosition");
+    container.scrollTop = parseInt(scrollPosition);
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    saveScroll();
+    reloadScroll();
+  });
+
   const isMobile = window.innerWidth <= 768;
   let showSeasons = false;
 

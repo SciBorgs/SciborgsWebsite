@@ -1,112 +1,107 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import members from "../members.json";
 import styles from "../styles/_members.module.scss";
-import type { ImageParams } from "../types.ts";
+import type { Member } from "../types";
+import { FaXmark } from "react-icons/fa6";
 
 export default function DisplayMembers() {
-  const groups: Record<number, [number, number]> = {
-    0: [0, 6],
-    1: [3, 4],
-    2: [5, 6],
-  };
-
-  const defaultImages = members.filter((_, i) => {
-    return i >= groups[0][0] && i <= groups[0][1];
-  });
-
-  const [selected, setSelected] = useState<number>(0);
+  const departments = ["All", "Programming", "Construction", "Electronics"];
+  const [selected, setSelected] = useState(0);
   const [curr, setCurr] = useState<number | null>(null);
-  const [images, setImages] = useState<ImageParams[]>(defaultImages);
+  const [search, setSearch] = useState("");
 
-  const departments = ["Programming", "Construction", "Electronics"];
-  const textRef = useRef<HTMLDivElement | null>(null);
-  const [maxHeight, setMax] = useState<number>(0);
+  const filtered: Member[] =
+    selected === 0 ? members : members.filter((m) => m.dept === selected - 1);
 
-  useEffect(() => {
-    const filteredImages = members.filter((_, i) => {
-      setCurr(null);
-      return i >= groups[selected][0] && i <= groups[selected][1];
-    });
-    setImages(filteredImages);
+  const searched = search
+    ? filtered.filter((m) =>
+        m.name.toLowerCase().includes(search.toLowerCase()),
+      )
+    : filtered;
 
-    const container = textRef.current;
-
-    if (container) {
-      setMax(container?.offsetHeight);
-    }
-  }, [selected]);
+  const sorted = [...searched].sort(
+    (a, b) => (b.head ? 1 : 0) - (a.head ? 1 : 0),
+  );
 
   return (
     <div className={styles.container}>
       <div className={styles.selectorContainer}>
         {departments.map((department, i) => {
+          const currCount =
+            i == 0
+              ? members.length
+              : members.filter((m) => m.dept === i - 1).length;
+
           return (
             <div
               key={i}
-              className={styles.selector}
+              data-tap="1.1"
+              className={`${styles.selector} ${selected == i && styles.activeSelection}`}
               onClick={() => setSelected(i)}
             >
-              {department}
+              {`${department} (${currCount})`}
             </div>
           );
         })}
-        <div
-          className={styles.selectorIndicator}
-          style={{ "--offset": `${selected}` } as React.CSSProperties}
+        <input
+          className={styles.search}
+          type="text"
+          placeholder="Search members..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </div>
 
       <div className={styles.membersContainer}>
-        {images.map((image, i) => {
-          const middle = Math.floor(images.length / 2);
-          const offset = curr != null ? i - curr : i - middle;
-
-          const styleClass =
-            curr != null
-              ? offset == 0
-                ? styles.activeImage
-                : offset < 0
-                  ? styles.leftImage
-                  : styles.rightImage
-              : styles.default;
-
-          const ifActive = offset == 0 && curr != null;
-          const appearText = ifActive ? styles.show : "";
+        {sorted.map((member, i) => {
+          const isLeadership = member.head;
+          const hasRole = member.role;
 
           return (
             <div
               key={i}
-              id={styles.imageContainer}
-              className={styleClass}
-              style={{ "--offset": `${offset}` } as React.CSSProperties}
+              className={`${styles.memberContainer} ${isLeadership && styles.isLeadership}`}
               onClick={() => setCurr(i)}
             >
-              <div className={styles.gridContainer}>
-                <div className={styles.innerImage} onClick={() => setCurr(i)}>
-                  {[...Array(6)].map((_, i) => (
-                    <div key={i} className={styles.pos} />
-                  ))}
-                  <img className={styles.dragImage} src={image.src} />
+              {(hasRole || isLeadership) && (
+                <div className={styles.leadership}>
+                  {member.head ?? member.role}
                 </div>
-
-                <div
-                  id={styles.textContainer}
-                  className={appearText}
-                  ref={textRef}
-                  style={
-                    { "--maxHeight": `${maxHeight}px` } as React.CSSProperties
-                  }
-                >
-                  <div style={{ padding: "0.25rem 0.375rem" }}>
-                    <h1 className={styles.title}>{image.name}</h1>
-                    <h1 className={styles.artist}>by {image.desc}</h1>
-                  </div>
-                </div>
+              )}
+              <img src={member.src}></img>
+              <div className={styles.textContainer}>
+                <h1 className={styles.memberName}>{member.name}</h1>
+                <p className={styles.memberDesc}>{member.desc}</p>
               </div>
             </div>
           );
         })}
       </div>
+
+      {sorted.length <= 0 && (
+        <div className="membersContainer">
+          <h1>No members were found</h1>
+        </div>
+      )}
+
+      {curr !== null && (
+        <div className={styles.expandedMember} onClick={() => setCurr(null)}>
+          <div className={styles.expandedCard}>
+            <FaXmark
+              className={styles.exitExpand}
+              onClick={() => setCurr(null)}
+            />
+            <img src={sorted[curr].src} />
+            <div className={styles.expandedText}>
+              <h1 className={styles.expandedName}>{sorted[curr].name}</h1>
+              <p className={styles.expandedRole}>
+                {sorted[curr].head ?? sorted[curr].role}
+              </p>
+              <p className={styles.expandedDesc}>{sorted[curr].desc}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

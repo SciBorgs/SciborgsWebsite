@@ -1,6 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 import sponsors from "../../public/sponsors.json";
+
+const { fadeThrough = false } = Astro.props;
+
 const typeNames = ["BYTE", "KILOBYTE", "MEGABYTE", "GIGABYTE", "TERABYTE"];
 const colors = [
   "--color-orange",
@@ -23,27 +26,37 @@ const sponsorGroups = typeNames
 
 <div id="sponsorsContainer">
   <h1 class="header">Sponsors</h1>
-  <div class="tiersContainer">
+  <div class={`tiersContainer ${fadeThrough ? "gridTiers" : ""}`}>
     {
-      sponsorGroups.map((group) => (
-        <>
-          <h1 class="tierHeader">{group.name}</h1>
-          <div class="tierContainer" style={`--tier-color:var(${group.color})`}>
-            <svg
-              class="circuitSVG"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <div class="sponsorContainer">
-              {group.sponsors.map((sponsor) => (
-                <a href={sponsor.href} data-tap="1.1">
-                  <Icon name={sponsor.src} class="sponsorLogo" />
-                </a>
-              ))}
+      sponsorGroups.map((group, i) => {
+        const delay = i * 1;
+
+        return (
+          <div
+            class={`sponsorTier ${fadeThrough ? "fadeThrough" : ""}`}
+            style={`--delay: ${delay}s`}
+          >
+            <h1 class="tierHeader">{group.name}</h1>
+            <div
+              class="tierContainer"
+              style={`--tier-color:var(${group.color})`}
+            >
+              <svg
+                class="circuitSVG"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+              />
+              <div class="sponsorContainer">
+                {group.sponsors.map((sponsor) => (
+                  <a href={sponsor.href} data-tap="1.1">
+                    <Icon name={sponsor.src} class="sponsorLogo" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        </>
-      ))
+        );
+      })
     }
   </div>
 </div>
@@ -62,6 +75,28 @@ const sponsorGroups = typeNames
     gap: 1.5rem;
     width: 100%;
     padding-bottom: 1rem;
+
+    &.gridTiers {
+      display: grid;
+    }
+  }
+
+  .sponsorTier {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+
+    &.fadeThrough {
+      opacity: 0;
+      transition: opacity 1s ease;
+      grid-area: 1 / 1;
+    }
+
+    &.appearSponsors {
+      opacity: 1;
+    }
   }
 
   .tierHeader {
@@ -112,6 +147,16 @@ const sponsorGroups = typeNames
     filter: drop-shadow(3px 3px 5px rgb(0 0 0 / 50%));
   }
 
+  @keyframes appearSponsor {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
   @media (width >= 48rem) {
     .sponsorContainer {
       flex-direction: row;
@@ -126,6 +171,24 @@ const sponsorGroups = typeNames
 
 <script is:inline>
   const SVG_NS = "http://www.w3.org/2000/svg";
+
+  function setupFade() {
+    const tiers = Array.from(
+      document.querySelectorAll(".sponsorTier.fadeThrough"),
+    );
+
+    const CYCLE = 4000;
+    let current = 0;
+
+    function showNext() {
+      tiers[current].classList.remove("appearSponsors");
+      current = (current + 1) % tiers.length;
+      tiers[current].classList.add("appearSponsors");
+    }
+
+    tiers[0].classList.add("appearSponsors");
+    setInterval(showNext, CYCLE);
+  }
 
   function seededRand(seed) {
     let s = seed;
@@ -234,6 +297,8 @@ const sponsorGroups = typeNames
       buildSVG(c);
       ro.observe(c);
     });
+
+    setupFade();
   }
 
   document.addEventListener("DOMContentLoaded", setup);

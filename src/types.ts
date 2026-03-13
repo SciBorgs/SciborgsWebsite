@@ -9,6 +9,15 @@ export interface VideoParams {
   title: string;
 }
 
+export interface Member {
+  src: string;
+  name: string;
+  desc: string;
+  dept: number;
+  role?: string;
+  head?: string;
+}
+
 export interface Season {
   year: number;
   seasonName: string;

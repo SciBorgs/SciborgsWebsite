@@ -18,7 +18,7 @@
   --inner-bg: #1f2937;
   --color-bxsci: #0f7763;
   --color-yellow: #a3854d;
-  --color-sciborgs: #fddd06;
+  --color-sciborgs: #fddd10;
   --white-but-not: white; /* text-stone-300 */
   --color-orange: #f19a26;
   --color-brown: #8b6244;
@@ -64,7 +64,7 @@ body {
   font-weight: 400;
   color: var(--white-but-not);
   background-color: var(--color-bg);
-  overflow-y: auto;
+  overflow: clip auto;
   overscroll-behavior: none;
 }
 
