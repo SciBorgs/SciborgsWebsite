@@ -85,6 +85,10 @@ img {
   position: absolute;
   top: -1rem;
   left: -0.5rem;
+  overflow: hidden;
+  width: 9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .textContainer {
@@ -188,6 +192,10 @@ img {
   .memberContainer {
     width: 10rem;
     height: 20rem;
+  }
+
+  .leadership {
+    width: 10rem;
   }
 
   .expandedCard {

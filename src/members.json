@@ -1,40 +1,284 @@
 [
   {
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
-    "name": "James Cocone 1",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.",
-    "dept": 0,
-    "head": "Captain"
+    "name": "Marlon Wald",
+    "head": "Captain",
+    "desc": "",
+    "dept": 2,
+    "priority": 0
+  },
+
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Charles Kerr",
+    "head": "Leadership",
+    "desc": "",
+    "dept": 0
   },
   {
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
-    "name": "James Cocone 2",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.",
-    "role": "DOPE",
+    "name": "Charlotte Wang",
+    "head": "Leadership",
+    "desc": "",
     "dept": 1
   },
   {
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
-    "name": "James Cocone 3",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.",
+    "name": "Kailyn Cai",
+    "head": "Leadership",
+    "desc": "",
     "dept": 1
   },
   {
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
-    "name": "James Cocone 4",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.",
+    "name": "Julianne Stanciu",
+    "head": "Leadership",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Ricardo Richiez",
+    "head": "Leadership",
+    "desc": "",
     "dept": 0
   },
   {
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
-    "name": "James Cocone 5",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.",
+    "name": "Ennio Wong",
+    "head": "Leadership",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Katie Fong",
+    "head": "Construction Leadership",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Kishan Patel",
+    "head": "Programming Leadership",
+    "desc": "",
+    "dept": 1
+  },
+
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Anastasios Bountouvas",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Masua Chaiken",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Evonne Chen",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Joseph Chen",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Kayvan Chen",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Ethan Cheung",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "James Cocone",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Denio Dema",
+    "desc": "",
     "dept": 0
   },
   {
     "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
-    "name": "James Cocone 6",
-    "desc": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.",
+    "name": "Noah Dreyfuss",
+    "desc": "",
     "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Eladius Figueroa",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "James George Franco",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Cole Henry",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Xilin Huang",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Sunay Jain",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Ethan Jones",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Philip Jow",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Ezekiel Kim",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Ankit Kumar",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Dimitri Lesokhin",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Davin Li",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Henry Li",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Lin Wang Li",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Andrew Louie",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Emily Lozano",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Charles Meier-Vargas",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Dulce Mejia Mendoza",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Theodore Meyers",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Prasad Biswas",
+    "desc": "",
+    "dept": 1
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Ryan Chao",
+    "desc": "",
+    "dept": 2
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Ryan Shen",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Elliott Stone",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Alex Wang",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Nathaniel Wenger",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Ming Fa Michaelangelo Xie",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Aldrich Zheng",
+    "desc": "",
+    "dept": 0
+  },
+  {
+    "src": "https://res.cloudinary.com/ddnw5dscn/image/upload/v1765418794/sciborgslogo_bqe0gi_ofkloj.png",
+    "name": "Stephanie Zhu",
+    "desc": "",
+    "dept": 1
   }
 ]

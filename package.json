@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev --host",
-    "preview": "astro build && astro preview",
+    "preview": "astro build && astro preview --host",
     "style": "npx stylelint \"**/*.{astro,scss,css}\" --fix",
     "astro": "astro"
   },

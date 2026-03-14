@@ -89,12 +89,14 @@ const sponsorGroups = typeNames
     width: 100%;
 
     &.fadeThrough {
+      z-index: 0;
       opacity: 0;
       transition: opacity 1s ease;
       grid-area: 1 / 1;
     }
 
     &.appearSponsors {
+      z-index: 1;
       opacity: 1;
     }
   }

@@ -5,7 +5,7 @@ import type { Member } from "../types";
 import { FaXmark } from "react-icons/fa6";
 
 export default function DisplayMembers() {
-  const departments = ["All", "Programming", "Construction", "Electronics"];
+  const departments = ["All", "Construction", "Programming", "Electronics"];
   const [selected, setSelected] = useState(0);
   const [curr, setCurr] = useState<number | null>(null);
   const [search, setSearch] = useState("");
@@ -19,9 +19,20 @@ export default function DisplayMembers() {
       )
     : filtered;
 
-  const sorted = [...searched].sort(
-    (a, b) => (b.head ? 1 : 0) - (a.head ? 1 : 0),
-  );
+  const sorted = [...searched].sort((a, b) => {
+    const rank = (m: Member) => (m.head ? 0 : m.role ? 1 : 2);
+
+    const rankDiff = rank(a) - rank(b);
+    if (rankDiff !== 0) return rankDiff;
+
+    if (a.head && b.head) {
+      const aPriority = a.priority ?? Infinity;
+      const bPriority = b.priority ?? Infinity;
+      if (aPriority !== bPriority) return aPriority - bPriority;
+    }
+
+    return a.name > b.name ? 1 : -1;
+  });
 
   return (
     <div className={styles.container}>
@@ -64,9 +75,9 @@ export default function DisplayMembers() {
               onClick={() => setCurr(i)}
             >
               {(hasRole || isLeadership) && (
-                <div className={styles.leadership}>
+                <p className={styles.leadership}>
                   {member.head ?? member.role}
-                </div>
+                </p>
               )}
               <img src={member.src}></img>
               <div className={styles.textContainer}>

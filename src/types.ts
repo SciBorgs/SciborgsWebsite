@@ -16,6 +16,7 @@ export interface Member {
   dept: number;
   role?: string;
   head?: string;
+  priority?: number;
 }
 
 export interface Season {
