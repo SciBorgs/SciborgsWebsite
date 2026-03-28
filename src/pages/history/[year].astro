@@ -23,7 +23,6 @@ const selRobot = selSeason.robot;
 <SeasonLayout>
   <div class="container">
     <h1 class="robotHeader">{selRobot.name}</h1>
-    <h3 class="infoHeader">{"competed in " + selSeason.seasonName + " - " + selSeason.year}</h1>
     {selRobot.src ? <img class="robotImage" src={selRobot.src}/> : <></>}
     <a href=`https://www.thebluealliance.com/team/1155/${year}`>Blue Alliance!</a>
   </div>

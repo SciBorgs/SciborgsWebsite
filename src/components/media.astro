@@ -16,7 +16,7 @@ const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
       <h2>YouTube</h2>
       {
         video ? (
-          <YouTube class="youtube" id={video.videoId} title={video.title} posterQuality="max" />
+          <YouTube class="youtube" id={video.videoId} title={video.title} posterQuality="high" />
         ) : (
           <p>No video available</p>
         )

@@ -12,7 +12,7 @@ export async function getLatestYoutubeVideo(channelId: string): Promise<VideoPar
   const parser = new XMLParser();
   const data = parser.parse(xml);
 
-  const entry = data.feed.entry?.[0];
+  const entry = data.feed.entry?.[1];
   if (!entry) return null;
 
   return {
