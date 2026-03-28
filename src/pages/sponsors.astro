@@ -1,0 +1,15 @@
+---
+import Donate from "./donate.astro";
+---
+
+<Donate />
+
+<script is:inline>
+  function scrollDown() {
+    const tab = document.getElementById("divider");
+    tab?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  
+  document.addEventListener("DOMContentLoaded", scrollDown);
+  document.addEventListener("astro:page-load", scrollDown);
+</script>

@@ -1,0 +1,116 @@
+module.exports = {
+  extends: [
+    "stylelint-config-standard",
+    "stylelint-config-astro",
+    "stylelint-config-prettier",
+  ],
+  plugins: ["stylelint-order"],
+  rules: {
+    "order/properties-order": [
+      [
+        {
+          groupName: "Position",
+          properties: ["position", "top", "right", "bottom", "left", "z-index"],
+        },
+        {
+          groupName: "Display",
+          properties: ["display", "visibility", "overflow", "float", "clear"],
+        },
+        {
+          groupName: "Flex",
+          properties: [
+            "flex",
+            "flex-grow",
+            "flex-shrink",
+            "flex-basis",
+            "flex-direction",
+            "flex-wrap",
+            "justify-content",
+            "align-items",
+            "align-self",
+            "gap",
+            "row-gap",
+            "column-gap",
+          ],
+        },
+        {
+          groupName: "Dimensions",
+          properties: [
+            "width",
+            "min-width",
+            "max-width",
+            "height",
+            "min-height",
+            "max-height",
+            "margin",
+            "margin-top",
+            "margin-right",
+            "margin-bottom",
+            "margin-left",
+            "padding",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+          ],
+        },
+        {
+          groupName: "Typography",
+          properties: [
+            "font",
+            "font-family",
+            "font-size",
+            "font-weight",
+            "line-height",
+            "text-align",
+            "text-transform",
+            "text-decoration",
+            "letter-spacing",
+            "white-space",
+          ],
+        },
+        {
+          groupName: "Visual",
+          properties: [
+            "color",
+            "background",
+            "background-color",
+            "background-image",
+            "background-position",
+            "background-size",
+            "border",
+            "border-radius",
+            "box-shadow",
+            "opacity",
+          ],
+        },
+        {
+          groupName: "Animation",
+          properties: [
+            "transition",
+            "transition-property",
+            "transition-duration",
+            "transition-timing-function",
+            "animation",
+            "animation-name",
+            "animation-duration",
+            "animation-timing-function",
+          ],
+        },
+      ],
+      {
+        unspecified: "bottomAlphabetical",
+      },
+    ],
+  },
+  overrides: [
+    {
+      files: ["**/*.astro"],
+      customSyntax: "postcss-html",
+    },
+    {
+      files: ["**/*.scss"],
+      customSyntax: "postcss-scss",
+    },
+  ],
+};

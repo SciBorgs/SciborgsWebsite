@@ -1,0 +1,59 @@
+---
+import Seasons from "../../history.json";
+import SeasonLayout from "../../layouts/seasonLayout.astro";
+
+export function getStaticPaths() {
+  const validYears = Seasons.filter((season) => {
+    return season.year >= 2003 && season.year <= new Date().getFullYear();
+  });
+
+  return validYears.map((robot) => ({
+    params: { year: robot.year.toString() },
+  }));
+}
+
+const { year } = Astro.params;
+const season = Seasons.filter((season) => {
+  return season.year.toString() == year;
+});
+const selSeason = season[0];
+const selRobot = selSeason.robot;
+---
+
+<SeasonLayout>
+  <div class="container">
+    <h1 class="robotHeader">{selRobot.name}</h1>
+    {selRobot.src ? <img class="robotImage" src={selRobot.src}/> : <></>}
+    <a href=`https://www.thebluealliance.com/team/1155/${year}`>Blue Alliance!</a>
+  </div>
+</SeasonLayout>  
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .robotHeader {
+  }
+
+  .infoHeader {
+    font-size: var(--text-sm);
+    color: var(--inner-bg);
+  }
+
+  .robotImage {
+    width: 16rem;
+    height: auto;
+    margin-top: 0.5rem;
+  }
+
+  @media (width >= 48rem) {
+    .robotImage {
+      width: 20rem;
+      height: auto;
+    }
+  }
+</style>

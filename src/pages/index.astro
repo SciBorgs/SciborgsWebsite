@@ -1,25 +1,32 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Team from "../pages/team.astro";
-import Media from "./media.astro";
-import Members from "./members.tsx";
+import Team from "../components/team.astro";
+import Media from "../components/media.astro";
+import About from "../components/about.astro";
+import SponsorView from "../components/sponsorView.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout>
-  <div class="container">
-    <Team />
-    <!-- <Members client:load /> -->
-    <Media />
-  </div>
+  <Team />
+  <About />
+  <SponsorView fadeThrough />
+  <a class="considerDonating scaleUp" data-tap="1.1" href="/donate"
+    >Consider Donating!<Icon name="mdi:arrow-top-right" /></a
+  >
+  <Media />
 </Layout>
 
-<style lang="scss">
-  .container {
+<style>
+  .considerDonating {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh; 
     align-items: center;
-    overflow-y: auto;
+    gap: 0.25rem;
+    width: fit-content;
+    padding: 0.5rem;
+    font-size: var(--text-xl);
+    background-color: var(--color-bxsci);
+    border-radius: 0.25rem;
+    margin-inline: auto;
   }
 </style>

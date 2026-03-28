@@ -1,0 +1,205 @@
+---
+import { Icon } from "astro-icon/components";
+import Layout from "../layouts/Layout.astro";
+import SponsorView from "../components/sponsorView.astro";
+
+const emails = ["bxsciborgs@gmail.com", "ennio0109@gmail.com"];
+---
+
+<Layout>
+  <div id="donateContainer">
+    <h1 class="donateHeader header">Donate</h1>
+    <img class="donateTiers" src="/sponsorTiers.png" />
+    <div class="donateInfo">
+      <p class="donateDesc">
+        With over 40 members and a growing JV division, the SciBorgs are always
+        looking to push further. We are seeking support from individuals and
+        organizations who want to help us on STEM education. Your contribution
+        will go directly toward replacing aging materials, acquiring new tools,
+        and creating new opportunities for every student in our program.
+      </p>
+      <h3 class="smHeader" style="text-align:center;">Consider donating!</h3>
+      <div class="emailContainer">
+        <div id="toggleEmails">
+          <Icon id="emailSelector" name="mdi:menu-right" />
+          <p>Show Emails</p>
+        </div>
+        <div id="emailsContainer">
+          <div class="emailsInner">
+            <div class="emailEntry">
+              <p class="emailLabel">Sciborgs Contact</p>
+              <a href={`mailto:${emails[0]}`} class="emailAddress"
+                >{emails[0]}</a
+              >
+            </div>
+            <div class="emailDivider"></div>
+            <div class="emailEntry">
+              <div style="margin-bottom: 0.125rem">
+                <p class="emailLabel">Sponsorships Lead</p>
+                <p class="emailInfo">(faster response)</p>
+              </div>
+              <a href={`mailto:${emails[1]}`} class="emailAddress"
+                >{emails[1]}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="divider"></div>
+
+  <SponsorView />
+</Layout>
+
+<style>
+  #donateContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    padding-top: 5rem;
+  }
+
+  .donateTiers {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.25rem;
+    filter: drop-shadow(3px 3px 5px rgb(0 0 0));
+    object-fit: contain;
+  }
+
+  .donateDesc {
+    font-family: var(--font-sen);
+    font-size: var(--text-md);
+  }
+
+  .emailContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    outline: 1px solid var(--white-but-not);
+    outline-offset: -1px;
+  }
+
+  #toggleEmails {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+
+  #emailSelector {
+    transition: rotate 350ms ease;
+  }
+
+  #emailSelector.activeIcon {
+    rotate: 90deg;
+  }
+
+  #emailsContainer {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 350ms ease-in-out;
+    border-top: 1px solid rgb(255 255 255 / 10%);
+  }
+
+  #emailsContainer.emailExpand {
+    max-height: var(--max-height);
+  }
+
+  .emailsInner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .emailEntry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .emailLabel {
+    font-family: var(--font-courier);
+    font-size: var(--text-md);
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 40%);
+    margin-block: 0;
+  }
+
+  .emailInfo {
+    font-family: var(--font-sen);
+    font-size: var(--text-sm);
+    color: white;
+    margin-block: 0;
+  }
+
+  .emailAddress {
+    font-family: var(--font-sen);
+    font-size: var(--text-sm);
+    color: white;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: var(--color-sciborgs);
+    }
+  }
+
+  .emailDivider {
+    height: 1px;
+    background: rgb(255 255 255 / 8%);
+  }
+
+  #divider {
+    width: 90%;
+    margin: 1.5rem auto;
+    border-bottom: 2px var(--white-but-not) solid;
+  }
+
+  @media (width >= 48rem) {
+    #donateContainer {
+      display: grid;
+      gap: 1rem;
+      padding: 0.5rem 2.5rem;
+      padding-top: 2.5rem;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr;
+    }
+
+    .donateHeader {
+      grid-column: 1 / 3;
+    }
+
+    .donateInfo {
+      width: 30rem;
+    }
+
+    .donateDesc {
+      font-size: var(--text-lg);
+    }
+  }
+</style>
+
+<script is:inline>
+  const toggleEmails = document.getElementById("toggleEmails");
+  const emailsContainer = document.getElementById("emailsContainer");
+  const emailSelector = document.getElementById("emailSelector");
+  let showEmail = false;
+
+  function setMaxEmail() {
+    emailsContainer.style.setProperty(
+      "--max-height",
+      `${emailsContainer.scrollHeight}px`,
+    );
+  }
+  document.addEventListener("DOMContentLoaded", setMaxEmail);
+  document.addEventListener("astro:page-load", setMaxEmail);
+
+  toggleEmails.addEventListener("click", () => {
+    showEmail = !showEmail;
+    emailsContainer.classList.toggle("emailExpand", showEmail);
+    emailSelector.classList.toggle("activeIcon", showEmail);
+  });
+</script>

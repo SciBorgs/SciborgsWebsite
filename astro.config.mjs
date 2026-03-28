@@ -7,5 +7,8 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [icon(), react()]
+  integrations: [icon(), react()],
+  redirects: {
+    "/history": `/history/${new Date().getFullYear() - 1}`
+  }
 });

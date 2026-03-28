@@ -1,0 +1,109 @@
+---
+import { YouTube } from "astro-embed";
+import { getLatestYoutubeVideo } from "../lib/youtube";
+
+const video = await getLatestYoutubeVideo(import.meta.env.YOUTUBE_ID);
+---
+
+<div class="container">
+  <div class="mediaHeader">
+    <h1 class="header">Media</h1>
+    <p>Latest Content From Our Socials</p>
+  </div>
+
+  <div class="socials">
+    <div class="socialContainer youtube">
+      <h2>YouTube</h2>
+      {
+        video ? (
+          <YouTube class="youtube" id={video.videoId} title={video.title} posterQuality="high" />
+        ) : (
+          <p>No video available</p>
+        )
+      }
+    </div>
+
+    <div class="socialContainer instagram">
+      <h2>Instagram</h2>
+      <iframe
+        src="https://www.instagram.com/reel/DFi2rKrJVMp/embed"
+        id="instagram"
+        class="instagram-media"
+        scrolling="no"
+        allowtransparency="true"
+      >
+      </iframe>
+    </div>
+  </div>
+  <script async src="https://www.instagram.com/embed.js"></script>
+</div>
+
+<style lang="scss">
+  .container {
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+
+  .inner {
+    padding: 1.5rem;
+    background: var(--background);
+  }
+
+  .mediaHeader {
+    margin-bottom: 1rem;
+    text-align: center;
+
+    p {
+      font-size: var(--text-md);
+      opacity: 0.75;
+    }
+  }
+
+  .socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .socialContainer {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background: var(--background);
+    border: 1px solid var(--white-but-not);
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 25%);
+
+    h2 {
+      margin-block: 0;
+    }
+
+    &.instagram {
+      max-width: 24rem;
+      height: auto;
+    }
+  }
+
+  .youtube {
+    border-radius: 0.75rem;
+  }
+
+  @media (width >= 56rem) {
+    .socials {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .socialContainer {
+      &.youtube {
+        max-width: 720px;
+      }
+    }
+  }
+</style>

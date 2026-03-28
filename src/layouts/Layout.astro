@@ -1,4 +1,6 @@
 ---
+import Footer from "../components/footer.astro";
+import Header from "../components/header.astro";
 import "../styles/_base.scss";
 ---
 
@@ -12,11 +14,42 @@ import "../styles/_base.scss";
     <title>SciBorgs | FRC Team 1155</title>
     <meta property="og:title" content="SciBorgs | FRC Team 1155" />
     <meta property="og:url" content="https://www.sciborgs1155.com/" />
-    <meta property="og:image" content="https://sciborgs1155.com/favicon.png?size=512" />
+    <meta
+      property="og:image"
+      content="https://sciborgs1155.com/favicon.png?size=512"
+    />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#a3854d" />
   </head>
+
   <body>
+    <Header />
     <slot />
+    <Footer />
   </body>
+
+  <script is:inline>
+    function appear() {
+      const navBar = document.getElementById("navBar");
+      navBar.classList.add("activeMobile");
+    }
+
+    appear();
+
+    window.addEventListener("resize", appear);
+    document.body.addEventListener("scroll", appear);
+    document.addEventListener("astro:after-swap", appear);
+
+    document.addEventListener("pointerdown", (element) => {
+      const selected = element.target.closest("[data-tap]");
+      if (!selected) return;
+
+      const scale = selected.dataset.tap;
+      selected.style.setProperty("--scale", scale);
+
+      selected.classList.remove("tap");
+      void selected.offsetWidth;
+      selected.classList.add("tap");
+    });
+  </script>
 </html>

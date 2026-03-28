@@ -1,197 +1,208 @@
 img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  width: 6rem;
+  height: 6rem;
 }
 
 .container {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-
-.innerContainer {
-  position: absolute;
-  inset: 2rem;
-  border-radius: 1rem;
-  border: 1px solid var(--white-but-not);
-  background: var(--background);
-}
-
-.header {
-  text-align: center;
-
-  h1 {
-    font-size: var(--text-4xl);
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
 }
 
 .selectorContainer {
-  position: relative;
-  display: inline-flex;
-  flex-direction: row;
-  gap: 1rem;
-  width: auto;
-  padding: 0.75rem;
-  border: 1px solid var(--white-but-not);
-  border-radius: 5rem;
-  box-shadow: 2px 2px 10px #000;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: fit-content;
 }
 
 .selector {
-  width: 5.5rem;
-  padding: 0.75rem 0;
-  font-size: var(--text-xs);
+  width: fit-content;
+  padding: 0.25rem;
+  font-size: var(--text-md);
   text-align: center;
-  border: 1px solid var(--white-but-not);
-  border-radius: 5rem;
+  background-color: var(--color-bg);
+  border: 2px solid var(--inner-bg);
+  border-radius: 0.25rem;
+  transition: border 250ms ease;
   cursor: pointer;
-  margin-block: 0;
+
+  &.activeSelection {
+    border: 2px solid white;
+  }
 }
 
-.selectorIndicator {
-  position: absolute;
-  top: 1rem;
-  bottom: 1rem;
-  left: 1rem;
-  width: 5rem;
-  background-color: var(--color-yellow);
-  border-radius: 5rem;
-  opacity: 0.5;
-  transform: translateX(calc(6.5rem * var(--offset)));
-  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 350ms;
+.search {
+  width: fit-content;
+  padding: 0.25rem;
+  font-family: var(--font-orbitron);
+  font-size: var(--text-md);
+  color: white;
+  background-color: var(--color-bg);
+  border: 2px solid var(--inner-bg);
+  border-radius: 0.25rem;
+  transition: border 250ms ease;
   cursor: pointer;
+
+  &:active {
+    border: 2px solid white;
+  }
 }
 
 .membersContainer {
-  position: relative;
-  width: 100vw;
-  height: 32rem;
-}
-
-.membersBackground {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .memberContainer {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  perspective: 31.25rem;
-  transform-style: preserve-3d;
-  pointer-events: none;
-  z-index: 1;
-}
-
-#imageContainer {
-  --offsetX: calc(var(--offset) * 5rem);
-  --rotateY: 25deg;
-  --opacity: 0.65;
-  position: absolute;
-  top: 4rem;
-  width: 8rem;
-  aspect-ratio: 1 / 1;
-  transition: top 400ms ease, 400ms ease, scale 750ms ease, opacity 350ms ease;
-  filter: drop-shadow(3px 3px 5px #333);
-  pointer-events: auto;
-  z-index: calc(100 - abs(var(--offset)));
-
-  &.default {
-    opacity: var(--opacity);
-    cursor: pointer;
-    transform: translateX(calc(var(--offsetX) + 1rem))
-      rotateY(calc(var(--rotateY) * -0.5));
-  }
-
-  &.activeImage {
-    z-index: 100;
-    opacity: 1;
-    scale: 1.3;
-  }
-
-  &.rightImage {
-    transform-origin: left center;
-    opacity: calc(1 - calc(abs(var(--offset)) * 0.1));
-    cursor: pointer;
-    transform: translateX(var(--offsetX)) rotateY(calc(var(--rotateY) * -1));
-  }
-
-  &.leftImage {
-    transform-origin: right center;
-    opacity: calc(1 - calc(abs(var(--offset)) * 0.1));
-    cursor: pointer;
-    transform: translateX(var(--offsetX)) rotateY(calc(var(--rotateY) * 1));
-  }
-}
-
-.hoverContainer {
   position: relative;
-}
-
-#textContainer {
   display: flex;
   flex-direction: column;
-  width: 12rem;
-  margin-top: 0.5rem;
-  padding: 0.25rem 0.375rem;
-  border: 1px solid var(--white-but-not);
-  animation: appear ease-in-out 1000ms forwards 100ms;
+  align-items: center;
+  width: 9rem;
+  height: 16rem;
+  background-color: var(--color-bg);
+  border: 2px solid var(--inner-bg);
   border-radius: 0.25rem;
-  box-shadow: 2px 2px 10px #000;
-  justify-self: center;
-  opacity: 0;
+  transition:
+    transform 0.15s,
+    border-color 0.15s;
+  cursor: pointer;
+
+  &.isLeadership {
+    border-image: linear-gradient(to bottom, #0f7763, #fddd06) 1;
+  }
+
+  &:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
 }
 
-.name {
+.leadership {
+  position: absolute;
+  top: -1rem;
+  left: -0.5rem;
+  overflow: hidden;
+  width: 9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.textContainer {
+  width: 100%;
+  padding: 0.5rem 0.25rem;
+  border-top: 2px solid var(--inner-bg);
+}
+
+.memberName {
   font-size: var(--text-sm);
-  text-align: center;
 }
 
-.desc {
-  font-size: var(--text-xs);
-  text-align: left;
-  overflow-wrap: break-word;
+.memberDesc {
+  font-size: 0.675rem;
 }
 
-@keyframes appear {
+.expandedMember {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 10%;
+  background-color: rgb(0 0 0 / 60%);
+  animation: fadeIn 0.2s ease;
+  cursor: pointer;
+  inset: 0;
+}
+
+.expandedCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 80%;
+  padding: 2rem;
+  background-color: var(--color-bg);
+  border: 2px solid var(--inner-bg);
+  border-radius: 0.5rem;
+  animation: scaleIn 0.2s ease;
+  cursor: auto;
+
+  img {
+    width: 10rem;
+    height: 10rem;
+  }
+}
+
+.exitExpand {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.expandedText {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5rem 0.25rem;
+  border-top: 2px solid var(--inner-bg);
+}
+
+.expandedName {
+  font-size: var(--text-3xl);
+}
+
+.expandedRole {
+  font-size: var(--text-xl);
+}
+
+.expandedDesc {
+  font-size: var(--text-md);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
   to {
     opacity: 1;
   }
 }
 
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @media (width >= 48rem) {
-  .container {
-    gap: 2rem;
+  .memberContainer {
+    width: 10rem;
+    height: 20rem;
   }
 
-  .selectorIndicator {
-    width: 7rem;
-    transform: translateX(calc(8.5rem * var(--offset)));
+  .leadership {
+    width: 10rem;
   }
 
-  .selector {
-    width: 7.5rem;
-    padding: 0.75rem 0.25rem;
-    font-size: var(--text-md);
+  .expandedCard {
+    width: 50%;
   }
 
-  #imageContainer {
-    --offsetX: calc(var(--offset) * 7rem);
-    --rotateY: 40deg;
-    width: 12rem;
-    height: 12rem;
-
-    &.default {
-      top: 25%;
-      scale: 1.25;
-    }
-  }
-
-  .textContainer {
-    width: 15rem;
+  .expandedMember {
+    padding-top: 0;
   }
 }

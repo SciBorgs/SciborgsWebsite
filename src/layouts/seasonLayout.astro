@@ -1,0 +1,407 @@
+---
+import { Icon } from "astro-icon/components";
+import History from "../history.json";
+import Layout from "./Layout.astro";
+import { ClientRouter } from "astro:transitions";
+
+const { year } = Astro.params;
+const seasons = History.sort((a, b) => b.year - a.year);
+const currentIndex = seasons.findIndex((s) => s.year === Number(year));
+
+const currSeason = seasons[currentIndex];
+const prevSeason = seasons[currentIndex + 1] ?? seasons[0];
+const nextSeason = seasons[currentIndex - 1] ?? seasons[seasons.length - 1];
+---
+
+<Layout>
+  <div class="container">
+    <div id="mobileBar">
+      <div id="toggleSeasons" onclick="appearSeasons()">
+        <Icon id="indicator" name="mdi:menu-right" />
+        <h1>Team History</h1>
+      </div>
+      <div id="seasonsContainer">
+        <div class="divider"></div>
+        {
+          seasons.map((season, i) => {
+            const delay = i * 0.0325;
+            return (
+              <a
+                href={"/history/" + season.year}
+                class={`seasonHeader ${season.year == Number(year) ? "activeSeason" : ""}`}
+                style={`--delay: ${delay}s`}
+              >
+                <p style="font-family: var(--font-courier)">{season.year}</p>
+                <p>{season.seasonName}</p>
+              </a>
+            );
+          })
+        }
+      </div>
+      <div class="divider"></div>
+    </div>
+    <!-- Desktop Version -->
+    <div id="seasonNav" class="safeView">
+      <div class="seasonInfo dropShadow">
+        <div class="seasonLogoWrapper">
+          <img class="seasonLogo" src={currSeason.src} />
+        </div>
+        <div class="seasonText">
+          <h1>
+            {currSeason.year}
+          </h1>
+          <p>{currSeason.seasonName}</p>
+        </div>
+      </div>
+
+      <div class="pickerContainer">
+        <a
+          href={`/history/${prevSeason.year}`}
+          data-tap="1.2"
+          class="seasonPicker dropShadow"
+        >
+          <Icon name="mdi:menu-left" />
+          <span>{prevSeason.year}</span>
+        </a>
+        <a
+          href={`/history/${nextSeason.year}`}
+          data-tap="1.2"
+          class="seasonPicker dropShadow"
+        >
+          <span>{nextSeason.year}</span>
+          <Icon name="mdi:menu-right" />
+        </a>
+      </div>
+
+      <div class="divider"></div>
+      <div id="seasonsContainerDesktop">
+        {
+          seasons.map((season, i) => {
+            return (
+              <a
+                href={"/history/" + season.year}
+                class={`seasonHeader ${season.year == Number(year) ? "activeSeason" : ""}`}
+              >
+                <p style="font-family: var(--font-courier)">{season.year}</p>
+                <p>{season.seasonName}</p>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+    <div class="innerContainer">
+      <slot />
+    </div>
+  </div>
+  <ClientRouter />
+</Layout>
+
+<style>
+  img {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    padding-top: 5rem;
+  }
+
+  #toggleSeasons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+
+  #indicator {
+    font-size: 1.5rem;
+    transition: rotate 350ms ease;
+    rotate: 180deg;
+  }
+
+  #indicator.activeIcon {
+    rotate: 90deg;
+  }
+
+  #seasonsContainer {
+    overflow: hidden;
+    min-height: 0;
+    max-height: 0;
+    transition: max-height 650ms ease;
+  }
+
+  #seasonsContainer.expand {
+    max-height: var(--max-height);
+  }
+
+  #seasonsContainer::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .seasonHeader {
+    display: flex;
+    flex-direction: row;
+    opacity: 0;
+    transition: opacity 650ms ease;
+
+    p {
+      padding: 0.5rem;
+      font-size: var(--text-lg);
+      text-align: center;
+      border-radius: 0.25rem;
+      margin-block: 0.35rem;
+    }
+
+    &.activeSeason {
+      background-color: rgb(253 221 6 / 45%);
+      border: 1px solid var(--color-sciborgs);
+      border-radius: 0.5rem;
+
+      p {
+        color: var(--color-sciborgs);
+      }
+    }
+  }
+
+  .animateHeader {
+    opacity: 1;
+    transition: opacity 200ms ease;
+    transition-delay: var(--delay);
+  }
+
+  .divider {
+    margin: 0.75rem 1rem;
+    border-top: 1px var(--white-but-not) solid;
+  }
+
+  #seasonNav {
+    display: none;
+  }
+
+  .innerContainer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  @keyframes appear {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* desktop only styles */
+  @media (width >= 48rem) {
+    .container {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      padding: 0;
+    }
+
+    #mobileBar {
+      display: none;
+    }
+
+    #seasonNav {
+      display: flex;
+      flex-direction: column;
+      width: 24rem;
+      height: 100%;
+      padding: 1rem;
+      background-color: var(--inner-bg);
+      border-radius: 0 1.5rem 1.5rem 0;
+      filter: drop-shadow(3px 3px 5px rgb(0 0 0));
+    }
+
+    .seasonInfo {
+      position: relative;
+      width: 100%;
+      margin-bottom: 1rem;
+      background-image: linear-gradient(90deg, #0f172a, #1e293b);
+      border: 1px solid rgb(43 43 43);
+      border-radius: 1rem;
+    }
+
+    .seasonText {
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0.75rem;
+      font-family: var(--font-courier);
+
+      h1 {
+        font-size: var(--text-3xl);
+        color: var(--color-sciborgs);
+      }
+
+      p {
+        font-size: var(--text-sm);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-white-but-not);
+      }
+    }
+
+    .seasonLogoWrapper {
+      position: relative;
+      width: 100%;
+      height: 10rem;
+    }
+
+    .seasonLogoWrapper::after {
+      position: absolute;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 2px,
+        rgb(0 0 0 / 15%) 2px,
+        rgb(0 0 0 / 15%) 4px
+      );
+      content: "";
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .seasonLogo {
+      width: 100%;
+      height: 100%;
+      padding: 1.5rem;
+      filter: drop-shadow(3px 3px 5px rgb(255 255 255 / 20%)) !important;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .pickerContainer {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+    }
+
+    .seasonPicker {
+      display: flex;
+      padding: 0.25rem 0.75rem;
+      font-family: var(--font-courier);
+      background-image: linear-gradient(90deg, #0f172a, #1e293b);
+      border-radius: 0.25rem;
+      justify-items: center;
+
+      svg {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    #seasonsContainerDesktop {
+      flex-grow: 1;
+      max-height: none;
+      padding: 0.25rem;
+      mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 0.25rem,
+        black calc(100% - 0.25rem),
+        transparent
+      );
+      overflow-y: scroll;
+      overscroll-behavior: none;
+    }
+
+    .seasonHeader {
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      border-radius: 0;
+      opacity: 1;
+      margin-block: 0;
+
+      p {
+        background-color: transparent;
+        filter: none;
+      }
+
+      &.activeSeason {
+        background-color: rgb(253 221 6 / 45%);
+        border: 1px solid var(--color-sciborgs);
+        border-radius: 0.5rem;
+
+        p {
+          color: var(--color-sciborgs);
+        }
+      }
+    }
+
+    .divider {
+      border-top: 2px solid var(--white-but-not);
+    }
+
+    .infoContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 50%;
+    }
+  }
+</style>
+
+<script is:inline>
+  function saveScroll() {
+    const container = document.getElementById("seasonsContainerDesktop");
+    container.addEventListener(
+      "scroll",
+      (e) => {
+        sessionStorage.setItem("scrollPosition", e.target.scrollTop.toString());
+      },
+      { passive: true },
+    );
+  }
+
+  function reloadScroll() {
+    const container = document.getElementById("seasonsContainerDesktop");
+    const scrollPosition = sessionStorage.getItem("scrollPosition");
+    container.scrollTop = parseInt(scrollPosition);
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    saveScroll();
+    reloadScroll();
+  });
+
+  const isMobile = window.innerWidth <= 768;
+  let showSeasons = false;
+
+  function appearSeasons() {
+    if (!isMobile) return;
+    const seasonsContainer = document.getElementById("seasonsContainer");
+    const icon = document.getElementById("indicator");
+    const seasonHeaders = document.querySelectorAll(".seasonHeader");
+
+    showSeasons = !showSeasons;
+
+    seasonHeaders.forEach((header) =>
+      header.classList.toggle("animateHeader", showSeasons),
+    );
+    seasonsContainer?.classList.toggle("expand", showSeasons);
+    icon?.classList.toggle("activeIcon", showSeasons);
+  }
+
+  function setMaxSeasons() {
+    const seasonsContainer = document.getElementById("seasonsContainer");
+    seasonsContainer?.style.setProperty(
+      "--max-height",
+      `${seasonsContainer.scrollHeight}px`,
+    );
+  }
+
+  document.addEventListener("DOMContentLoaded", setMaxSeasons);
+  document.addEventListener("astro:page-load", setMaxSeasons);
+</script>

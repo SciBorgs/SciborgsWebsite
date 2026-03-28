@@ -1,4 +1,5 @@
 :root {
+  --text-xxs: 0.5rem;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -12,25 +13,77 @@
   --text-7xl: 4.5rem;
   --text-8xl: 6rem;
   --text-9xl: 8rem;
+  --color-header: #d9b343;
   --color-bg: #111827;
+  --inner-bg: #1f2937;
+  --color-bxsci: #0f7763;
   --color-yellow: #a3854d;
-  --white-but-not: #d6d3d1; /* text-stone-300 */
-  --font-comfortaa: "Comfortaa", sans-serif;
+  --color-sciborgs: #fddd10;
+  --white-but-not: white; /* text-stone-300 */
+  --color-orange: #f19a26;
+  --color-brown: #8b6244;
+  --color-gray: #b2b2b2;
+  --color-lime: #ccde10;
+  --color-green: #2d995d;
+  --font-gcmilan: "GCMilan", serif;
+  --font-changaone: "Changa One", serif;
+  --font-courier: "Courier New", serif;
+  --font-orbitron: "Orbitron", serif;
   --font-sen: "Sen", serif;
-  --font-poppins: "Poppins", sans-serif;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Sen:wght@400..800&display=swap");
+
+@font-face {
+  font-family: GCMilan;
+  src: url("/fonts/GCMilan.ttf") format("truetype");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 html {
-  box-sizing: border-box;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 body {
+  overflow: clip auto;
+  height: 100%;
   margin: 0;
-  font-family: var(--font-comfortaa), sans-serif;
+  font-family: var(--font-orbitron);
   font-weight: 400;
   color: var(--white-but-not);
   background-color: var(--color-bg);
+  overscroll-behavior: none;
+}
+
+.handleNav {
+  position: sticky;
+  height: 100svh;
+}
+
+.safeView {
+  padding-top: 5rem !important;
+}
+
+img {
+  filter: drop-shadow(3px 3px 5px #000);
+}
+
+a {
+  text-decoration: none;
+  color: var(--white-but-not);
+  pointer-events: auto;
 }
 
 ul {
@@ -43,6 +96,8 @@ li {
 }
 
 h1,
+h2,
+h3,
 p {
   margin-block: 0.25rem;
 }
@@ -60,8 +115,93 @@ li {
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+.header {
+  font-family: var(--font-changaone);
+  font-size: var(--text-5xl);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.125rem;
+  filter: drop-shadow(3px 3px 5px rgb(0 0 0));
+  margin-block: 0.75rem;
+}
+
+.smHeader {
+  font-family: var(--font-courier);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-block: 0.5rem;
+}
+
+.topicHeader {
+  font-family: var(--font-changaone);
+  font-size: var(--text-3xl);
+  text-transform: uppercase;
+  margin-block: 0.5rem;
+}
+
+.dropShadow {
+  filter: drop-shadow(3px 3px 5px #000);
+}
+
+.bxscilink {
+  font-weight: 600;
+  color: var(--color-sciborgs);
+}
+
+[data-tap].tap {
+  animation: scaleUp 500ms ease;
+}
+
+.scaleUp {
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.miniScaleUp {
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.025);
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(var(--scale));
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(var(--scale));
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (width >= 48rem) {
+  .smHeader {
+    font-size: var(--text-xl);
+    margin-block: 0.5rem;
+  }
 }

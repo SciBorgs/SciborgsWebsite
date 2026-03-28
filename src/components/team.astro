@@ -1,0 +1,74 @@
+---
+import Socials from "../components/socials.astro";
+import { team_desc } from "../../public/info.json";
+---
+
+<div class="container">
+  <img src="/sciborgs.webp" />
+  <h1 class="teamHeader header">FRC Team 1155</h1>
+  <p class="teamDesc" set:html={team_desc} />
+  <Socials />
+</div>
+
+<style lang="scss">
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(
+      180deg,
+      var(--color-header) 0%,
+      rgb(17 24 39 / 100%) 75%
+    );
+
+    img {
+      display: block;
+      width: 20rem;
+      height: auto;
+      animation: appear 1.5s ease forwards;
+    }
+
+    .teamHeader {
+      font-family: var(--font-orbitron);
+      font-size: var(--text-3xl);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .teamDesc {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (width >= 48rem) {
+    .container {
+      img {
+        width: 50rem;
+      }
+    }
+
+    .teamHeader {
+      font-size: var(--text-5xl) !important;
+    }
+
+    .teamDesc {
+      width: 50%;
+    }
+  }
+</style>
