@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import members from "../members.json";
 import styles from "../styles/_members.module.scss";
 import type { Member } from "../types";

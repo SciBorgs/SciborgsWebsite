@@ -24,7 +24,7 @@ const sponsorGroups = typeNames
   .reverse();
 ---
 
-<div id="sponsorsContainer">
+<div id="sponsorsCon">
   <h1 class="header">Sponsors</h1>
   <div class={`tiersContainer ${fadeThrough ? "gridTiers" : ""}`}>
     {
@@ -50,7 +50,7 @@ const sponsorGroups = typeNames
                 {group.sponsors.map((sponsor) => (
                   <a href={sponsor.href} data-tap="1.1">
                     <Icon name={sponsor.src} class="sponsorLogo" />
-                  </a> 
+                  </a>
                 ))}
               </div>
             </div>
@@ -62,7 +62,7 @@ const sponsorGroups = typeNames
 </div>
 
 <style>
-  #sponsorsContainer {
+  #sponsorsCon {
     position: relative;
     overflow: hidden visible;
     padding: 0.5rem 1rem;
@@ -174,10 +174,16 @@ const sponsorGroups = typeNames
 <script is:inline>
   const SVG_NS = "http://www.w3.org/2000/svg";
 
+  let fadeInterval = null;
+
   function setupFade() {
     const tiers = Array.from(
       document.querySelectorAll(".sponsorTier.fadeThrough"),
     );
+
+    if (tiers.length === 0) return;
+
+    if (fadeInterval) clearInterval(fadeInterval);
 
     const CYCLE = 4000;
     let current = 0;
@@ -189,7 +195,7 @@ const sponsorGroups = typeNames
     }
 
     tiers[0].classList.add("appearSponsors");
-    setInterval(showNext, CYCLE);
+    fadeInterval = setInterval(showNext, CYCLE);
   }
 
   function seededRand(seed) {
@@ -231,7 +237,6 @@ const sponsorGroups = typeNames
   function buildSVG(container) {
     const svg = container.querySelector(".circuitSVG");
 
-    const rect = container.getBoundingClientRect();
     const w = container.scrollWidth;
     const h = container.scrollHeight;
 
@@ -295,6 +300,8 @@ const sponsorGroups = typeNames
   );
 
   function setup() {
+    ro.disconnect();
+
     document.querySelectorAll(".tierContainer").forEach((c) => {
       buildSVG(c);
       ro.observe(c);
