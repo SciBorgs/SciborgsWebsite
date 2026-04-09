@@ -1,0 +1,89 @@
+---
+import FIRSTBanner from "./FIRSTBanner.astro";
+---
+
+<div class="container">
+  <div class="statusContainer dropShadow">
+    <h1>Status Update</h1>
+    <div class="divider"></div>
+    <p class="statusDesc">
+      Alongside our alliance partners, <a
+        class="bxscilink"
+        href="https://www.robotigers1796.com/"
+        >Robo Tigers (1796)</a
+      > and <a class="bxscilink" href="https://www.undercontrol1156.com/"
+        >Under Control (1156)</a
+      >, we won <a
+        class="bxscilink"
+        href="https://www.thebluealliance.com/event/2026nyn2"
+        >Gotham Regional 2026</a
+      >! <b>WE ARE GOING TO WORLDS!!!</b>
+    </p>
+    <FIRSTBanner award_name="WINNER" award_event="2026 Gotham Regional" />
+  </div>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 1.25rem;
+  }
+
+  .statusContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 75%;
+    padding: 0.75rem 1rem;
+    font-size: var(--text-sm);
+    border: 2px solid var(--color-sciborgs);
+    border-radius: 0.5rem;
+
+    h1,
+    p {
+      margin: 0;
+    }
+  }
+
+  .statusContainer::before {
+    position: absolute;
+    border: inherit;
+    border-radius: inherit;
+    animation: pulse-border 2s ease-out infinite;
+    content: "";
+    inset: -2px;
+    pointer-events: none;
+  }
+
+  .divider {
+    height: 2px;
+    background: rgb(255 255 255 / 8%);
+  }
+
+  .statusDesc {
+    font-size: var(--text-lg);
+  }
+
+  @keyframes pulse-border {
+    100% {
+      border-radius: 0.9rem;
+      opacity: 0;
+      inset: -12px;
+    }
+  }
+
+  @media (width >= 48rem) {    
+    .statusContainer {
+      h1 {
+        font-size: var(--text-4xl);
+      }
+    }
+
+    .statusDesc {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

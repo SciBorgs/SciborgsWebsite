@@ -24,21 +24,21 @@ const sponsorGroups = typeNames
   .reverse();
 ---
 
-<div id="sponsorsContainer">
+<div id="sponsorsContainer" class={fadeThrough && "noPadding"}>
   <h1 class="header">Sponsors</h1>
-  <div class={`tiersContainer ${fadeThrough ? "gridTiers" : ""}`}>
+  <div class={`tiersContainer ${fadeThrough && "gridTiers"}`}>
     {
       sponsorGroups.map((group, i) => {
         const delay = i * 1;
 
         return (
           <div
-            class={`sponsorTier ${fadeThrough ? "fadeThrough" : ""}`}
+            class={`sponsorTier ${fadeThrough && "fadeThrough"}`}
             style={`--delay: ${delay}s`}
           >
             <h1 class="tierHeader">{group.name}</h1>
             <div
-              class="tierContainer"
+              class="tierContainer dropShadow"
               style={`--tier-color:var(${group.color})`}
             >
               <svg
@@ -49,7 +49,7 @@ const sponsorGroups = typeNames
               <div class="sponsorContainer">
                 {group.sponsors.map((sponsor) => (
                   <a href={sponsor.href} data-tap="1.1">
-                    <Icon name={sponsor.src} class="sponsorLogo" />
+                    <Icon name={sponsor.src} class="sponsorLogo scaleUp" />
                   </a> 
                 ))}
               </div>
@@ -66,6 +66,10 @@ const sponsorGroups = typeNames
     position: relative;
     overflow: hidden visible;
     padding: 0.5rem 1rem;
+
+    &.noPadding {
+      padding: 0;
+    }
   }
 
   .tiersContainer {

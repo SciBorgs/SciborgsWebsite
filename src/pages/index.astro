@@ -5,10 +5,16 @@ import Media from "../components/media.astro";
 import About from "../components/about.astro";
 import SponsorView from "../components/sponsorView.astro";
 import { Icon } from "astro-icon/components";
+import StatusUpdate from "../components/statusUpdate.astro";
 ---
+
+<head>
+  <title>Home | SciBorgs</title>
+</head>
 
 <Layout>
   <Team />
+  <StatusUpdate />
   <About />
   <SponsorView fadeThrough />
   <a class="considerDonating scaleUp" data-tap="1.1" href="/donate"
